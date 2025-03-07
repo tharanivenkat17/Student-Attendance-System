@@ -1,12 +1,10 @@
 import React from 'react'
+import '../StyleSheets/Home.css'
 
 function Home() {
   return (
-    <div>
-      <img src='Home.avif' alt='Home'>
-        <h1>Welcome to School Attendance System</h1>
-      </img>
-
+    <div className='Front'>
+      <h1>Welcome to School Attendance System</h1>
     </div>
   )
 }
