@@ -1,0 +1,51 @@
+{
+    "loginDetails":[
+        {
+            "username": "Teacher@123",
+            "password": "t1a7@V01",
+            "id":1
+        }
+    ],
+    "StudentData": [
+        {
+            "name": "Sivatharani",
+            "period1": "",
+            "period2": "",
+            "period3": "",
+            "period4": "",
+            "period5": "",
+            "period6": "",
+            "period7": ""
+        },
+        {
+            "name": "Arun",
+            "period1": "",
+            "period2": "",
+            "period3": "",
+            "period4": "",
+            "period5": "",
+            "period6": "",
+            "period7": ""
+        },
+        {
+            "name": "Sandhiya",
+            "period1": "",
+            "period2": "",
+            "period3": "",
+            "period4": "",
+            "period5": "",
+            "period6": "",
+            "period7": ""
+        },
+        {
+            "name": "Karthi",
+            "period1": "",
+            "period2": "",
+            "period3": "",
+            "period4": "",
+            "period5": "",
+            "period6": "",
+            "period7": ""
+        }
+    ]
+}
