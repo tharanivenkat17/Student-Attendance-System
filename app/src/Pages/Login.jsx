@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../StyleSheets/Login.css';
+import '../Styles/Login.css';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Hooks/AuthContext';
 
 function Login() {
+    const { login } = useAuth()
     const navigate = useNavigate();
     const [state, setState] = useState({
         userData: { username: '', password: '' },
@@ -37,6 +39,7 @@ function Login() {
                         const user = response.data[0];
                         if (user.password === data.password) {
                             alert('Login Successful');
+                            login()
                             setState({
                                 userData: { username: '', password: '' },
                                 errorField: {}
@@ -63,7 +66,7 @@ function Login() {
         const userNamePattern = /[A-Za-z\d!@#$%^&*]{6,}$/;
         if (!userNamePattern.test(data['username'])) {
             validation = false;
-            error['username'] = 'Enter Valid User Name';
+            error['username'] = 'Enter Valid Username';
         }
 
         const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{7,}$/;
@@ -83,9 +86,8 @@ function Login() {
     return (
         <div className="card">
             <form onSubmit={handleSubmit}>
-                <h1>Login Form</h1>
+                <h1>Login</h1>
                 <div className="flex">
-                    <label htmlFor="username">Enter UserName</label>
                     <input
                         type="text"
                         name="username"
@@ -94,10 +96,9 @@ function Login() {
                         onChange={handleChange}
                         required
                     />
-                    <span>{state.errorField.username}</span>
+                    {<span>{state.errorField.username}</span>}
                 </div>
                 <div className="flex">
-                    <label htmlFor="password">Enter Password</label>
                     <input
                         type="password"
                         name="password"
