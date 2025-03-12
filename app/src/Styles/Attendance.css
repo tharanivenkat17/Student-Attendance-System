@@ -1,0 +1,48 @@
+.body {
+    background-image: url('../assets/Attendance.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed; 
+    background-repeat: no-repeat; 
+    height: 466px; 
+}
+
+.head{
+    text-align: center;
+    color: #011d5a;
+}
+
+.head label{
+    font-size: 16px;
+    padding: 10px;
+}
+
+.head input{
+    font-size: 16px;
+    padding: 2px;
+}
+
+.table{
+    margin: auto;
+    margin-top: 20px;
+    padding: 4px;
+    width: 50%;
+    border: 2px solid #011d5a;
+}
+
+.table th {
+    padding: 12px 15px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.table td {
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.body button{
+    margin-top: 20px;
+    margin-left: 45%;
+    padding: 7px;
+}
