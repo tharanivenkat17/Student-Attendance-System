@@ -13,8 +13,8 @@ function useAttendance() {
             .then(response => {
                 setData(response.data)
                 // Initialize attendance after data is fetched
-                const initialAttendance = response.data.reduce((value, student) => {
-                    value[student.studentId] = {
+                const initialAttendance = response.data.reduce((defaultValue, student) => {
+                    defaultValue[student.studentId] = {
                         period1: false,
                         period2: false,
                         period3: false,
@@ -23,7 +23,7 @@ function useAttendance() {
                         period6: false,
                         period7: false
                     };
-                    return value;
+                    return defaultValue;
                 }, {});
                 setAttendance(initialAttendance)
             })

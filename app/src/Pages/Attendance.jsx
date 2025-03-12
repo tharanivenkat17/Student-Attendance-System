@@ -4,50 +4,61 @@ import useAttendance from '../Hooks/useAttendance'
 import axios from 'axios'
 
 function Attendance() {
-  const {date, setDate, data, error, attendance, setAttendance } = useAttendance()
+  const { date, setDate, data, error, attendance, setAttendance } = useAttendance()
 
-      // Handle checkbox
-      function handleCheck(studentId, period) {
-        setAttendance(prevState => ({
-          ...prevState,
-          [studentId]: {
-            ...prevState[studentId],
-            [period]: !prevState[studentId]?.[period]
-          }
-        }))
+  // Handle Check
+  function handleCheck(studentId, period) {
+    setAttendance(prevState => ({
+      ...prevState,
+      [studentId]: {
+        ...prevState[studentId],
+        [period]: !prevState[studentId]?.[period]
       }
-    
-      // Handle submit
-      const handleSubmit = () => {
-        if (!date) {
-          alert("Please select a date.");
-          return;
+    }))
+  }
+
+  // Handle Submit
+  const handleSubmit = () => {
+    if (!date) {
+      alert("Please select a date.");
+      return;
+    }
+
+    axios.get(`http://localhost:4001/attendance?date=${date}`)
+      .then((response) => {
+        if (response.data.length === 0) {
+          const attendanceData = { date, student: attendance };
+          console.log('Attendance Data:', attendanceData);
+
+          axios.post('http://localhost:4001/attendance', attendanceData)
+            .then(() => {
+              alert('Attendance submitted');
+              setDate('')
+              setAttendance({})
+            })
+            .catch(error => {
+              alert('Error submitting attendance:', error);
+            });
         }
-    
-        const attendanceData = { date, attendance };
-        console.log('Attendance Data:', attendanceData);
-    
-        axios.post('http://localhost:4001/attendance', attendanceData)
-          .then(() => {
-            alert('Attendance submitted');
-            setDate('')
-            setAttendance({})
-          })
-          .catch(error => {
-            alert('Error submitting attendance:', error);
-          });
-      };
-    
-      if (error) {
-        return <div>Error: {error}</div>
-      }
+        else{
+          alert('Attendance for this date is already entered, Please enter valid date')
+          setDate('')
+        }
+      })
+
+
+  };
+
+  if (error) {
+    return <div>Error: {error}</div>
+  }
 
   return (
     <div className='body'>
       <div className='head'>
         <h1>Attendance Page</h1>
         <h2>10 - A (Attendance Sheet)</h2>
-        <label>Enter Today Date:</label>
+        <label>Enter Attendance Date:</label>
         <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
       </div>
       <table className='table'>
@@ -55,7 +66,7 @@ function Attendance() {
           <tr>
             <td>S.No</td>
             <td>Name</td>
-            <td>Studnt Id</td>
+            <td>Student Id</td>
             <td>Period 1</td>
             <td>Period 2</td>
             <td>Period 3</td>
@@ -75,9 +86,10 @@ function Attendance() {
                 <td className='period' key={period}>
                   <input
                     type="checkbox"
-                    checked={attendance[datum.id]?.[`period${period}`] || false}
-                    //  (?.) - chaining ensures that if attendance[datum.id] is undefined
-                    onChange={() => handleCheck(datum.id, `period${period}`)}
+                    checked={attendance[datum.studentId]?.[`period${period}`] || false}
+                    // [`period${period}`] - dynamic access the attendance
+                    // || false - not clicked it will assume as false
+                    onChange={() => handleCheck(datum.studentId, `period${period}`)}
                   />
                 </td>
               ))}

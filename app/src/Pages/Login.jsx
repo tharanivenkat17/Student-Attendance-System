@@ -27,8 +27,7 @@ function Login() {
         if (handleValidate()) {
             const { username, password } = state.userData;
             const data = { username, password };
-            axios
-                .get(`http://localhost:4001/loginDetails?username=${data.username}`)
+            axios.get(`http://localhost:4001/loginDetails?username=${data.username}`)
                 .then((response) => {
                     if (response.data.length === 0) {
                         setState((prevState) => ({

@@ -5,21 +5,19 @@
     flex-wrap: wrap;
     justify-content: space-between;
     background-color: #264653;
-    color: white;
-    font-size: 16px;
+    color: #ffffff;
+    font-size: 20px;
     font-weight: 600;
     font-style: italic;
+    padding: 10px 12px;
 }
 
-.Home{
-    padding: 13px;
-}
-
-.Home a {
+.Header a {
     color: white;
     text-decoration: none;
 }
-.Home a:hover, i:hover {
+
+.Header a:hover, i:hover {
     border: 10px;
     padding: 2px;
     background-color: aliceblue;
