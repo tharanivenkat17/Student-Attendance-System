@@ -1,15 +1,18 @@
 .body {
-    background-image: url('../assets/Attendance.jpg');
+    background-image: url('../assets/loginback.avif');
     background-size: cover; 
     background-position: center; 
-    background-attachment: fixed; 
     background-repeat: no-repeat; 
-    height: 466px; 
+    height: 510px; 
+    margin-top: -21px;
 }
 
-.head{
+.body{
     text-align: center;
-    color: #011d5a;
+}
+
+.body h1{
+    padding-top: 100px;
 }
 
 .head label{
@@ -28,6 +31,7 @@
     padding: 4px;
     width: 50%;
     border: 2px solid #011d5a;
+    border-collapse: collapse;
 }
 
 .table th {

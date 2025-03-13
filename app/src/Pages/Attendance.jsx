@@ -56,7 +56,7 @@ function Attendance() {
   return (
     <div className='body'>
       <div className='head'>
-        <h1>Attendance Page</h1>
+        <h1> Mark Attendance </h1>
         <h2>10 - A (Attendance Sheet)</h2>
         <label>Enter Attendance Date:</label>
         <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />

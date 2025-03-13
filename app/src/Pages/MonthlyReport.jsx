@@ -3,7 +3,7 @@ import '../Styles/MonthlyReport.css'
 
 function MonthlyReport() {
   return (
-    <div>MonthlyReport</div>
+    <div>Monthly Report</div>
   )
 }
 

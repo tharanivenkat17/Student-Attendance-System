@@ -1,0 +1,39 @@
+.background {
+    background-image: url('../assets/loginback.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 510px;
+    margin-top: -21px; 
+}
+
+.background h1{
+    padding-top: 100px;
+    text-align: center;
+}
+
+.background form{
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+}
+
+.background input{
+    padding: 4px;  
+}
+
+.background button{
+    padding: 4px;
+    background-color: rgba(0, 255, 255, 0.39);
+}
+
+.background table{
+    margin: auto;
+    margin-top: 20px;
+    padding: 4px;
+    width: 50%;
+    border: 2px solid #011d5a;
+    border-collapse: collapse;
+    text-align: center;
+}

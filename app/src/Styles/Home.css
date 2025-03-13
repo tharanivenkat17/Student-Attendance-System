@@ -1,5 +1,13 @@
-.Front h1{
+.home{
+    background-image: url('../assets/loginback.avif');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 510px; 
+    margin-top: -21px;
+}
+
+.home h1{
     text-align: center;
-    margin-top: 180px;
-    color: rgb(16, 1, 97);
+    padding: 230px;
 }

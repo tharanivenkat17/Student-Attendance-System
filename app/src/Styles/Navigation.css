@@ -1,24 +1,22 @@
-/* **************** NAVIGATION BAR ************** */
 .Header {
     padding: 8px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: #264653;
-    color: #ffffff;
-    font-size: 20px;
+    background-color: rgba(51, 8, 8, 0.631);
+    color: rgb(255, 255, 255);
+    font-size: 18px;
     font-weight: 600;
     font-style: italic;
     padding: 10px 12px;
 }
 
 .Header a {
-    color: white;
+    color: rgb(255, 255, 255);
     text-decoration: none;
 }
 
 .Header a:hover, i:hover {
-    border: 10px;
     padding: 2px;
     background-color: aliceblue;
     color: rgb(137, 25, 141);

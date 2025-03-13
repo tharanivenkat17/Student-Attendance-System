@@ -1,0 +1,12 @@
+.launch h1{
+    /* background-color: rgba(0, 255, 255, 0.324); */
+    background-image: url('../assets/login.avif');
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 10px;
+    text-align: center;
+    color: black;
+    margin-top: 2px;
+    margin-bottom: -20px;
+    font-size: 26px;
+}

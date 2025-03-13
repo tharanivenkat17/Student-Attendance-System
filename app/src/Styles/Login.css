@@ -6,8 +6,8 @@
     border-radius: 10px;
 }
 
-form {
-    background-color: antiquewhite;
+.card form {
+    background-image: url('../assets/login.avif');
     padding: 20px;
     border-radius: 10px;
     margin: 20px;
@@ -41,13 +41,13 @@ form {
     background-color: rgba(135, 235, 255, 0.671);
     padding: 10px;
     margin-top: 10px;
-    color: rgb(3, 7, 63);
+    color: black;
     font-size: 16px;
     font-weight: bolder;
 }
 
 .button button:hover{
-    background-color: rgba(4, 39, 74, 0.671);
+    background-color: rgba(35, 43, 47, 0.631);
     cursor: pointer;
     color: white;
 }

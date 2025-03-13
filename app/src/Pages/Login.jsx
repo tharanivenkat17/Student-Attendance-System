@@ -44,7 +44,6 @@ function Login() {
                                 errorField: {}
                             });
                             navigate('/attendance');
-                            console.log("Login Successful")
                         } 
                         else {
                             setState((prevState) => ({
@@ -85,7 +84,7 @@ function Login() {
     return (
         <div className="card">
             <form onSubmit={handleSubmit}>
-                <h1>Login</h1>
+                <h2>Login</h2>
                 <div className="flex">
                     <input
                         type="text"
