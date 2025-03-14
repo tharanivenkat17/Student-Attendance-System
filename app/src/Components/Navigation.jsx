@@ -12,52 +12,14 @@ import AttendanceReport from '../Pages/AttendanceReport'
 
 function Navigation() {
     const navigate = useNavigate();
-    // To check whether the user is logged in or not
     const { isLoggedIn, logout } = useAuth()
-    if (isLoggedIn) {
-        console.log("Login")
-    }
-    else {
-        console.log("Logout")
-    }
-
-    // If the user is not logged in it will not allow to access the home page
-    function handleHome(isLoggedIn) {
+    // To Check the Login
+    function handleNavigation(path){
         if (isLoggedIn) {
-            navigate('/home')
-        }
-        else {
-            navigate('/')
-        }
-    }
-
-    // If the user is not logged in it will not allow to access the attendance page
-    function handleAttendance(isLoggedIn) {
-        if (isLoggedIn) {
-            navigate('/attendance')
+           navigate(path)
         }
         else {
             alert('Please Login, After Login only Attendance is accessable ')
-        }
-    }
-
-    // If the user is not logged in it will not allow to access the monthly report page
-    function handleMonthlyReport(isLoggedIn) {
-        if (isLoggedIn) {
-            navigate('/monthlyreport')
-        }
-        else {
-            alert('Please Login, After Login only Monthly Report is accessable ')
-        }
-    }
-    
-    // If the user is not logged in it will not allow to access the monthly report page
-    function handleAttendanceReport(isLoggedIn) {
-        if (isLoggedIn) {
-            navigate('/attendancereport')
-        }
-        else {
-            alert('Please Login, After Login only Monthly Report is accessable ')
         }
     }
 
@@ -65,23 +27,24 @@ function Navigation() {
         <div>
             <div className='Header'>
                 <div>
-                    <Link to={isLoggedIn ? "/home" : "/"} onClick={() => handleHome(isLoggedIn)}>
+                    <Link to={isLoggedIn ? "/home" : "/"} onClick={() => handleNavigation('/home')}>
                         <i class="fa-solid fa-house"></i>  Home
                     </Link> &nbsp;&nbsp;
-                    <Link to={isLoggedIn ? "/attendance" : "/"} onClick={() => handleAttendance(isLoggedIn)}>
+                    <Link to={isLoggedIn ? "/attendance" : "/"} onClick={() => handleNavigation('/attendance')}>
                         <i class="fa-solid fa-list-check"></i>  Attendance
                     </Link> &nbsp;&nbsp;
-                    <Link to={isLoggedIn ? "/monthlyreport" : "/"} onClick={() => handleMonthlyReport(isLoggedIn)}>
+                    <Link to={isLoggedIn ? "/monthlyreport" : "/"} onClick={() => handleNavigation('/monthlyreport')}>
                         <i class="fa-regular fa-calendar-days"></i>  Monthly Report
                     </Link> &nbsp;&nbsp;
-                    <Link to={isLoggedIn ? "/attendancereport" : "/"} onClick={() => handleAttendanceReport(isLoggedIn)}> 
+                    <Link to={isLoggedIn ? "/attendancereport" : "/"} onClick={() => handleNavigation('/attendancereport')}> 
                         <i class="fa-regular fa-rectangle-list"></i>  AttendanceReport
                     </Link>
                 </div>
 
                 <div style={{marginRight: '12px'}}>
                     <Link to="/login" onClick={isLoggedIn ? logout : null}>
-                        {isLoggedIn ? <i class="fa-solid fa-right-from-bracket"></i> : <i class="fa-solid fa-right-to-bracket"></i>}  {isLoggedIn ? 'Logout' : 'Login'}
+                        {isLoggedIn ? <i class="fa-solid fa-right-from-bracket"></i> : <i class="fa-solid fa-right-to-bracket"></i>} &nbsp; 
+                        {isLoggedIn ? 'Logout' : 'Login'}
                     </Link>
                 </div>
             </div>

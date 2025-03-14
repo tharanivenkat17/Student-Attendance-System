@@ -23,11 +23,6 @@
     padding: 4px;  
 }
 
-.background button{
-    padding: 4px;
-    background-color: rgba(0, 255, 255, 0.39);
-}
-
 .background table{
     margin: auto;
     margin-top: 20px;

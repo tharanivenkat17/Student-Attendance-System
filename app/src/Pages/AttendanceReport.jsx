@@ -6,10 +6,6 @@ function AttendanceReport() {
   const [data, setData] = useState(0);
   const [result, setResult] = useState([]);
 
-  function handleChange(event) {
-    setData(event.target.value);
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
     axios.get(`http://localhost:4001/attendance?studentId=${data}`)
@@ -38,10 +34,9 @@ function AttendanceReport() {
           placeholder='Enter Student Id'
           value={data}
           name="data"
-          onChange={handleChange}
+          onChange={(e) => setData(e.target.value)}
           required
         /> &nbsp;
-        <button type='submit'>Submit</button>
       </form>
 
       <table border="1" >
