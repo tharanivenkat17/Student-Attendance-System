@@ -6,7 +6,6 @@ import axios from 'axios'
 function Attendance() {
   const { date, setDate, data, error, attendance, setAttendance } = useAttendance()
 
-  // Handle Check
   function handleCheck(studentId, period) {
     setAttendance(prevState => ({
       ...prevState,
@@ -17,7 +16,6 @@ function Attendance() {
     }))
   }
 
-  // Handle Submit
   const handleSubmit = () => {
     if (!date) {
       alert("Please select a date.");
@@ -36,17 +34,16 @@ function Attendance() {
               setDate('')
               setAttendance({})
             })
+
             .catch(error => {
               alert('Error submitting attendance:', error);
             });
         }
-        else{
+        else {
           alert('Attendance for this date is already entered, Please enter valid date')
           setDate('')
         }
       })
-
-
   };
 
   if (error) {
@@ -57,7 +54,6 @@ function Attendance() {
     <div className='body'>
       <div className='head'>
         <h1> Mark Attendance </h1>
-        <h2>10 - A (Attendance Sheet)</h2>
         <label>Enter Attendance Date:</label>
         <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
       </div>

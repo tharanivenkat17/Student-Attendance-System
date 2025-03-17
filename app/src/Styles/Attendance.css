@@ -12,7 +12,7 @@
 }
 
 .body h1{
-    padding-top: 100px;
+    padding-top: 10px;
 }
 
 .head label{
@@ -25,28 +25,13 @@
     padding: 2px;
 }
 
-.table{
-    margin: auto;
-    margin-top: 20px;
-    padding: 4px;
-    width: 50%;
-    border: 2px solid #011d5a;
-    border-collapse: collapse;
-}
-
-.table th {
-    padding: 12px 15px;
-    text-align: center;
-    font-weight: bolder;
-}
-
-.table td {
-    border: 1px solid #ddd;
-    text-align: center;
-}
-
 .body button{
     margin-top: 20px;
-    margin-left: 45%;
     padding: 7px;
+    background-color: rgba(0, 255, 255, 0.251);
+    cursor: pointer;
+}
+.body button:hover{
+    background-color:  rgba(51, 8, 8, 0.631);
+    color: white;
 }

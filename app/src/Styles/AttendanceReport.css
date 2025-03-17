@@ -3,12 +3,10 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 510px;
-    margin-top: -21px; 
 }
 
 .background h1{
-    padding-top: 100px;
+    padding-top: 10px;
     text-align: center;
 }
 
@@ -21,14 +19,4 @@
 
 .background input{
     padding: 4px;  
-}
-
-.background table{
-    margin: auto;
-    margin-top: 20px;
-    padding: 4px;
-    width: 50%;
-    border: 2px solid #011d5a;
-    border-collapse: collapse;
-    text-align: center;
 }

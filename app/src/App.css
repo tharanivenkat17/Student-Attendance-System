@@ -1,0 +1,20 @@
+table{
+    margin: auto;
+    margin-top: 20px;
+    padding: 4px;
+    width: 50%;
+    border: 2px solid #011d5a;
+    border-collapse: collapse;
+}
+
+tr {
+    padding: 12px 15px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+td {
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
