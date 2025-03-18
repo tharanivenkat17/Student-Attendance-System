@@ -4,13 +4,16 @@ import { BrowserRouter } from 'react-router-dom'
 import Navigation from './Components/Navigation'
 import { AuthProvider } from './Hooks/AuthContext'
 import Footer from './Components/Footer'
+import { AttendanceProvider } from './Hooks/AttendanceContext'
 function App() {
   return (
     <div>
       <AuthProvider>
-        <BrowserRouter>
-          <Navigation />
-        </BrowserRouter>
+        <AttendanceProvider>
+          <BrowserRouter>
+            <Navigation />
+          </BrowserRouter>
+        </AttendanceProvider>
       </AuthProvider>
       <Footer />
     </div>

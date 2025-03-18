@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../Styles/AttendanceReport.css'
+import '../Styles/ReportsPage.css'
 
 function AttendanceReport() {
   const [data, setData] = useState(0);
@@ -28,6 +28,7 @@ function AttendanceReport() {
   return (
     <div className='background'>
       <h1>AttendanceReport</h1>
+      <h3 style={{textAlign:"center"}}>The Student Id is between (101 to 104)</h3>
       <form onSubmit={handleSubmit}>
       <input
           type="number"
@@ -39,11 +40,10 @@ function AttendanceReport() {
         /> &nbsp;
       </form>
 
-      <table border="1" >
+      <table>
         <thead>
           <tr>
-            <td>Student Id</td>
-            <td>Date</td>
+            <td>Attendance Date</td>
             <td>Period 1</td>
             <td>Period 2</td>
             <td>Period 3</td>
@@ -57,7 +57,6 @@ function AttendanceReport() {
           {result.map((datum) => (
             datum.student[data] && (
               <tr key={datum.data}>
-                <td>{data}</td>
                 <td>{datum.date}</td>
                 <td>{datum.student[data].period1 ? "1" : "0"}</td>
                 <td>{datum.student[data].period2 ? "1" : "0"}</td>

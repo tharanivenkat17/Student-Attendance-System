@@ -4,10 +4,12 @@ import useAttendance from '../Hooks/useAttendance'
 import axios from 'axios'
 
 function Attendance() {
+  // 
   const { date, setDate, data, error, attendance, setAttendance } = useAttendance()
 
+  // Update the Checkbox
   function handleCheck(studentId, period) {
-    setAttendance(prevState => ({
+    setAttendance((prevState) => ({
       ...prevState,
       [studentId]: {
         ...prevState[studentId],
@@ -16,6 +18,7 @@ function Attendance() {
     }))
   }
 
+  // Submit the Attendance
   const handleSubmit = () => {
     if (!date) {
       alert("Please select a date.");
@@ -35,15 +38,18 @@ function Attendance() {
               setAttendance({})
             })
 
-            .catch(error => {
+            .catch((error) => {
               alert('Error submitting attendance:', error);
             });
         }
         else {
-          alert('Attendance for this date is already entered, Please enter valid date')
+          alert('Attendance for this date has already been entered. Please enter a valid date.')
           setDate('')
         }
       })
+      .catch((error) => {
+        alert('Error retrieving the attendance date.', error);
+      });
   };
 
   if (error) {
@@ -57,7 +63,7 @@ function Attendance() {
         <label>Enter Attendance Date:</label>
         <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
       </div>
-      <table className='table'>
+      <table>
         <thead>
           <tr>
             <td>S.No</td>

@@ -1,0 +1,41 @@
+.background h1 {
+    background-image: url('../assets/login.avif');
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 10px;
+    text-align: center;
+    color: black;
+    margin-top: 2px;
+    font-size: 26px;
+}
+
+.background form{
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto;
+}
+
+.background input{
+    padding: 4px;  
+}
+
+.background table{
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    width: 50%;
+    border: 2px solid #011d5a;
+    border-collapse: collapse;
+}
+
+tr {
+    padding: 12px 15px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+td {
+    border: 1px solid #ddd;
+    text-align: center;
+}

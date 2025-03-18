@@ -5,7 +5,7 @@ import Login from './Login'
 function Launch() {
   return (
       <div className='launch'>
-        <h1>Login to Mark Attendance</h1>
+        <h1>Login to access the Attendance System</h1>
         <Login />
       </div>
   )

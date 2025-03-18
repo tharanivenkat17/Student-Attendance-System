@@ -12,6 +12,7 @@ function Login() {
         errorField: {}
     });
 
+    // Update the Changes
     function handleChange(event) {
         const updatedData = { ...state.userData };
         updatedData[event.target.name] = event.target.value;
@@ -22,6 +23,7 @@ function Login() {
         });
     }
 
+    // Submit the Login
     function handleSubmit(event) {
         event.preventDefault();
         if (handleValidate()) {
@@ -43,7 +45,7 @@ function Login() {
                                 userData: { username: '', password: '' },
                                 errorField: {}
                             });
-                            navigate('/attendance');
+                            navigate('/home');
                         } 
                         else {
                             setState((prevState) => ({
@@ -56,6 +58,7 @@ function Login() {
         }
     }
 
+    // Validate the Input Data
     function handleValidate() {
         let data = state.userData;
         let error = {};
@@ -77,7 +80,7 @@ function Login() {
             ...prevState,
             errorField: error
         }));
-
+        
         return validation;
     }
 
@@ -94,7 +97,7 @@ function Login() {
                         onChange={handleChange}
                         required
                     />
-                    {<span>{state.errorField.username}</span>}
+                    {state.errorField.username && <span>{state.errorField.username}</span>}
                 </div>
                 <div className="flex">
                     <input
@@ -105,7 +108,7 @@ function Login() {
                         onChange={handleChange}
                         required
                     />
-                    <span>{state.errorField.password}</span>
+                    {state.errorField.password && <span>{state.errorField.password}</span>}
                 </div>
                 <div className="button">
                     <button type="Submit">Login</button>

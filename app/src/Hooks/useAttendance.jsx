@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function useAttendance() {
     const [date, setDate] = useState('')
@@ -10,7 +10,7 @@ function useAttendance() {
     // Fetch student data
     useEffect(() => {
         axios.get('http://localhost:4001/StudentData')
-            .then(response => {
+            .then((response) => {
                 setData(response.data)
                 // Initialize attendance after data is fetched
                 const initialAttendance = response.data.reduce((defaultValue, student) => {
