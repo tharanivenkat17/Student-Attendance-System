@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 
 function useAttendance() {
     const [date, setDate] = useState('')
@@ -32,7 +32,9 @@ function useAttendance() {
             })
     }, [])
 
-  return { date, setDate, data, error, attendance, setAttendance }
+    const memorizedAttendance = useMemo(() => attendance, [attendance])
+
+  return { date, setDate, data, error, attendance:memorizedAttendance, setAttendance }
 }
 
 export default useAttendance

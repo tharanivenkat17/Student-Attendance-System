@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 
 function useStoredData() { 
@@ -15,6 +15,8 @@ function useStoredData() {
       });
   }, []);
 
-  return { storedData }
+  const memoizedStoredData = useMemo(() => storedData, [storedData])
+
+  return { storedData:memoizedStoredData }
 }
 export default useStoredData

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import axios from 'axios';
 import '../Styles/ReportsPage.css'
 
@@ -24,6 +24,8 @@ function AttendanceReport() {
         alert('An error occurred while fetching data.');
       });
   }
+
+  const memoizedResult = useMemo(() => result, [result])
 
   return (
     <div className='background'>
@@ -54,7 +56,7 @@ function AttendanceReport() {
           </tr>
         </thead>
         <tbody>
-          {result.map((datum) => (
+          {memoizedResult.map((datum) => (
             datum.student[data] && (
               <tr key={datum.data}>
                 <td>{datum.date}</td>

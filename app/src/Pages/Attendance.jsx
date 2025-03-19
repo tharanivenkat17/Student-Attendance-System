@@ -4,7 +4,7 @@ import useAttendance from '../Hooks/useAttendance'
 import axios from 'axios'
 
 function Attendance() {
-  // 
+  // Initial Attendance data
   const { date, setDate, data, error, attendance, setAttendance } = useAttendance()
 
   // Update the Checkbox
@@ -27,28 +27,30 @@ function Attendance() {
 
     axios.get(`http://localhost:4001/attendance?date=${date}`)
       .then((response) => {
-        if (response.data.length === 0) {
-          const attendanceData = { date, student: attendance };
-          console.log('Attendance Data:', attendanceData);
-
-          axios.post('http://localhost:4001/attendance', attendanceData)
-            .then(() => {
-              alert('Attendance submitted');
-              setDate('')
-              setAttendance({})
-            })
-
-            .catch((error) => {
-              alert('Error submitting attendance:', error);
-            });
-        }
-        else {
-          alert('Attendance for this date has already been entered. Please enter a valid date.')
+        if (response.data.length > 0) {
+          alert('Attendance for this date has already been entered.')
           setDate('')
+          return;
         }
+
+        const attendanceData = { date, student: attendance };
+        console.log('Attendance Data:', attendanceData);
+
+        axios.post('http://localhost:4001/attendance', attendanceData)
+        
+          .then(() => {
+            alert(`Attendance submitted for ${date}`);
+            setDate('')
+            setAttendance({})
+          })
+
+          .catch((error) => {
+            alert(`Error submitting attendance: ${error.message}`);
+          });
       })
+
       .catch((error) => {
-        alert('Error retrieving the attendance date.', error);
+        alert(`Error retrieving the attendance date: ${error.message}`);
       });
   };
 

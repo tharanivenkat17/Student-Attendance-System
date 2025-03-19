@@ -10,7 +10,7 @@ import { useAuth } from '../Hooks/AuthContext'
 import '../Styles/Navigation.css'
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-function Navigation() {
+function  Navigation() {
     const { isLoggedIn, logout } = useAuth()
 
     // To Check Login
@@ -47,8 +47,8 @@ function Navigation() {
             </div>
             <Routes>
                 <Route path='/' element={<Launch />} />
-                <Route path='/home' element={<Home />} />
                 <Route path='/login' element={<Login />} />
+                <Route path='/home' element={<Home />} />
                 <Route path='/attendance' element={<Attendance />} />
                 <Route path='/monthlyreport' element={<MonthlyReport />} />
                 <Route path='/attendancereport' element={<AttendanceReport />} />
@@ -56,5 +56,4 @@ function Navigation() {
         </div>
     )
 }
-
 export default Navigation
