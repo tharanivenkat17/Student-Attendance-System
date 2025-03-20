@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import './App.css'
 import { BrowserRouter } from 'react-router-dom'
 import Navigation from './Components/Navigation'
 import { AuthProvider } from './Hooks/AuthContext'
-import Footer from './Components/Footer'
 import { AttendanceProvider } from './Hooks/AttendanceContext'
 function App() {
+  const LazyLoadingComponent = React.lazy(() => import('./Components/Footer'))
+
   return (
-    <div>
+    <>
       <AuthProvider>
         <AttendanceProvider>
           <BrowserRouter>
@@ -15,8 +16,10 @@ function App() {
           </BrowserRouter>
         </AttendanceProvider>
       </AuthProvider>
-      <Footer />
-    </div>
+      <Suspense fallback={<>Footer Loading...</>}>
+        <LazyLoadingComponent />
+      </Suspense>
+    </>
   )
 }
 export default App

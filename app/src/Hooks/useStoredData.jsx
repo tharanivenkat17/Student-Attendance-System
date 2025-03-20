@@ -5,14 +5,18 @@ function useStoredData() {
   const [storedData, setStoredData] = useState([]); 
 
   useEffect(() => {
-    axios.get('http://localhost:4001/attendance')
-      .then((response) => {
+
+    const fetchData = async () => {
+      try{
+        const response = await axios.get('http://localhost:4001/attendance')
         setStoredData(response.data);
-      })
-      .catch((error) => {
+      }
+      catch(error) {
         console.error('Error fetching data:', error);
         alert('An error occurred while fetching data.');
-      });
+      }
+    }
+    fetchData();
   }, []);
 
   const memoizedStoredData = useMemo(() => storedData, [storedData])

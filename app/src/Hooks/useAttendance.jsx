@@ -32,9 +32,9 @@ function useAttendance() {
             })
     }, [])
 
-    const memorizedAttendance = useMemo(() => attendance, [attendance])
+    const memoizedAttendance = useMemo(() => attendance, [attendance])
 
-  return { date, setDate, data, error, attendance:memorizedAttendance, setAttendance }
+  return { date, setDate, data, error, attendance:memoizedAttendance, setAttendance }
 }
 
 export default useAttendance

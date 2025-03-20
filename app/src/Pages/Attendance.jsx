@@ -37,7 +37,7 @@ function Attendance() {
         console.log('Attendance Data:', attendanceData);
 
         axios.post('http://localhost:4001/attendance', attendanceData)
-        
+
           .then(() => {
             alert(`Attendance submitted for ${date}`);
             setDate('')

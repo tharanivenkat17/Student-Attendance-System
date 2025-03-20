@@ -30,9 +30,9 @@ function AttendanceReport() {
   return (
     <div className='background'>
       <h1>AttendanceReport</h1>
-      <h3 style={{textAlign:"center"}}>The Student Id is between (101 to 104)</h3>
+      <h3 style={{ textAlign: "center" }}>The Student Id is between (101 to 104)</h3>
       <form onSubmit={handleSubmit}>
-      <input
+        <input
           type="number"
           placeholder='Enter Student Id'
           value={data}
@@ -56,20 +56,19 @@ function AttendanceReport() {
           </tr>
         </thead>
         <tbody>
-          {memoizedResult.map((datum) => (
-            datum.student[data] && (
+          {memoizedResult.map((datum) => {
+            const studentAttendance = datum.student[data];
+            if (!studentAttendance) return null;
+            return (
               <tr key={datum.data}>
                 <td>{datum.date}</td>
-                <td>{datum.student[data].period1 ? "1" : "0"}</td>
-                <td>{datum.student[data].period2 ? "1" : "0"}</td>
-                <td>{datum.student[data].period3 ? "1" : "0"}</td>
-                <td>{datum.student[data].period4 ? "1" : "0"}</td>
-                <td>{datum.student[data].period5 ? "1" : "0"}</td>
-                <td>{datum.student[data].period6 ? "1" : "0"}</td>
-                <td>{datum.student[data].period7 ? "1" : "0"}</td>
+                {[1, 2, 3, 4, 5, 6, 7].map((period) => (
+                  <td key={period}>{studentAttendance[`period${period}`] ? "1" : "0"}</td>
+                ))}
               </tr>
             )
-          ))}
+            
+          })}
         </tbody>
       </table>
     </div>

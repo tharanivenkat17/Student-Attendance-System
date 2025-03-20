@@ -22,7 +22,6 @@ function MonthlyReport() {
           <td>{totalPeriods}</td>
           <td>{data.count}</td>
           <td>{data.average.toFixed(2)}%</td>
-          {/* <td>{data.average.toPrecision(4)}</td> */}
         </tr>
       );
     });

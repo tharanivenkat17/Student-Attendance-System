@@ -12,11 +12,11 @@ function Footer() {
         Location: 17, near Tidel Park, Siruseri, Chennai - 600001.
       </p>
       <p className='i-footer'>
-        <i class="fa-brands fa-x-twitter"></i>
-        <i class="fa-brands fa-instagram"></i>
-        <i class="fa-brands fa-youtube"></i>
-        <i class="fa-brands fa-linkedin-in"></i>
-        <i class="fa-brands fa-square-facebook"></i>
+        <i className="fa-brands fa-x-twitter"></i>
+        <i className="fa-brands fa-instagram"></i>
+        <i className="fa-brands fa-youtube"></i>
+        <i className="fa-brands fa-linkedin-in"></i>
+        <i className="fa-brands fa-square-facebook"></i>
       </p>
       <hr />
       <p>&copy; 2025 Student Attendance System. All Rights Reserved.</p>

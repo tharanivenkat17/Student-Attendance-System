@@ -12,7 +12,6 @@ import '../Styles/Navigation.css'
 
 function  Navigation() {
     const { isLoggedIn, logout } = useAuth()
-
     // To Check Login
     function handleNavigation(){
         if (!isLoggedIn) {
