@@ -29,8 +29,9 @@ function Login() {
         if (handleValidate()) {
             const { username, password } = state.userData;
             const data = { username, password };
-            axios.get(`http://localhost:4001/loginDetails?username=${data.username}`)
-                .then((response) => {
+            const fetchData = async () => {
+                try {
+                    const response = await axios.get(`http://localhost:4001/loginDetails?username=${data.username}`)
                     if (response.data.length === 0) {
                         setState((prevState) => ({
                             ...prevState,
@@ -46,7 +47,7 @@ function Login() {
                                 errorField: {}
                             });
                             navigate('/home');
-                        } 
+                        }
                         else {
                             setState((prevState) => ({
                                 ...prevState,
@@ -54,7 +55,13 @@ function Login() {
                             }));
                         }
                     }
-                });
+                }
+                catch (error) {
+                    console.error('Error fetching data:', error);
+                    alert('An error occurred while fetching data.');
+                }
+            }
+            fetchData();
         }
     }
 
@@ -80,7 +87,7 @@ function Login() {
             ...prevState,
             errorField: error
         }));
-        
+
         return validation;
     }
 

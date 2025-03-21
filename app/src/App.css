@@ -1,10 +1,7 @@
-tr {
-    padding: 12px 15px;
-    text-align: center;
-    font-weight: bolder;
-}
-
-td {
-    border: 1px solid #ddd;
-    text-align: center;
-}
+.table-bordered {
+    border: 1.5px solid #000 !important; 
+  }
+  
+  .table-bordered td, .table-bordered th {
+    border: 1.5px solid #000 !important; 
+  }

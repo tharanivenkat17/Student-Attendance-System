@@ -9,8 +9,9 @@ function useAttendance() {
 
     // Fetch student data
     useEffect(() => {
-        axios.get('http://localhost:4001/StudentData')
-            .then((response) => {
+        const fetchData = async () => {
+            try{
+                const response  = await axios.get('http://localhost:4001/StudentData')
                 setData(response.data)
                 // Initialize attendance after data is fetched
                 const initialAttendance = response.data.reduce((defaultValue, student) => {
@@ -26,10 +27,12 @@ function useAttendance() {
                     return defaultValue;
                 }, {});
                 setAttendance(initialAttendance)
-            })
-            .catch(error => {
+            }
+            catch(error) {
                 setError(error.message)
-            })
+            }
+        }
+        fetchData();    
     }, [])
 
     const memoizedAttendance = useMemo(() => attendance, [attendance])

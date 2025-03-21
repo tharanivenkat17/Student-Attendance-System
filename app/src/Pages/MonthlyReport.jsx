@@ -28,30 +28,37 @@ function MonthlyReport() {
   }, [finalArr, days, totalPeriods]);
 
   return (
-    <div className="background">
-      <h1>Monthly Report</h1>
-      <form>
-        <input
-          type="month"
-          value={selectedMonth}
-          onChange={dateChange}
-          required
-        />
-      </form>
-      <table border={1} style={{ borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            <td>Student Id</td>
-            <td>No.of Working Days</td>
-            <td>Total No.of Periods</td>
-            <td>No.of Periods Attended</td>
-            <td>Percentage</td>
-          </tr>
-        </thead>
-        <tbody>
-          { resultMonthlyReport }
-        </tbody>
-      </table>
+    <div>
+      <div className="text-center p-4">
+        <h1 className='p-1 fs-3'>Monthly Report</h1>
+        <form className='p-1'>
+          <input
+            type="month"
+            value={selectedMonth}
+            onChange={dateChange}
+            className='p-1'
+            required
+          />
+        </form>
+      </div>
+
+      <div className="container p-4">
+        <table className='table table-bordered p-2'>
+          <thead>
+            <tr>
+              <td>Student Id</td>
+              <td>No.of Working Days</td>
+              <td>Total No.of Periods</td>
+              <td>No.of Periods Attended</td>
+              <td>Percentage</td>
+            </tr>
+          </thead>
+          <tbody>
+            {resultMonthlyReport}
+          </tbody>
+        </table>
+      </div>
+
     </div>
   );
 }
