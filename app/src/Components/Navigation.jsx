@@ -27,7 +27,7 @@ function  Navigation() {
                         <i className="fa-solid fa-house"></i>  Home
                     </Link> &nbsp;&nbsp;
                     <Link to={isLoggedIn ? "/attendance" : "/"} onClick={() => handleNavigation()}>
-                        <i className="fa-solid fa-list-check"></i>  Attendance
+                        <i className="fa-solid fa-list-check"></i>  Mark Attendance
                     </Link> &nbsp;&nbsp;
                     <Link to={isLoggedIn ? "/monthlyreport" : "/"} onClick={() => handleNavigation()}>
                         <i className="fa-regular fa-calendar-days"></i>  Monthly Report

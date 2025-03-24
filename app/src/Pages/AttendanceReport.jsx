@@ -1,10 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import axios from 'axios';
-import '../Styles/ReportsPage.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function AttendanceReport() {
-  const [data, setData] = useState(0);
+  const [data, setData] = useState();
   const [result, setResult] = useState([]);
 
   function handleSubmit(event) {
@@ -12,13 +11,8 @@ function AttendanceReport() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:4001/attendance?studentId=${data}`)
-        const studentData = response.data
-        if (!studentData) {
-          alert('There is no student with this Student Id, Please enter a valid student id');
-        }
-        else {
-          console.log(studentData)
-          setResult(studentData);
+        if (response.data) {
+          setResult(response.data);
         }
       }
       catch (error) {
@@ -33,11 +27,10 @@ function AttendanceReport() {
 
   return (
     <div>
-      <div className="text-center p-4">
+      <div className="text-center p-5">
         <h1 className='p-1 fs-3'>Attendance Report</h1>
         <h3 className='p-1 fs-5'>The Student Id is between (101 to 104)</h3>
         <form className='p-2' onSubmit={handleSubmit}>
-          <label>Enter Student Id:</label>&nbsp;
           <input
             type="number"
             placeholder='Enter Student Id'

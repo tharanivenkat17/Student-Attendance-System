@@ -2,7 +2,6 @@ import axios from 'axios'
 import { useState, useEffect, useMemo } from 'react'
 
 function useAttendance() {
-    const [date, setDate] = useState('')
     const [data, setData] = useState([])
     const [error, setError] = useState('')
     const [attendance, setAttendance] = useState({})
@@ -37,7 +36,7 @@ function useAttendance() {
 
     const memoizedAttendance = useMemo(() => attendance, [attendance])
 
-  return { date, setDate, data, error, attendance:memoizedAttendance, setAttendance }
+  return { data, error, attendance:memoizedAttendance, setAttendance }
 }
 
 export default useAttendance

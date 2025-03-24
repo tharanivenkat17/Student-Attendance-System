@@ -17,6 +17,7 @@ function App() {
           </BrowserRouter>
         </AttendanceProvider>
       </AuthProvider>
+      
       <Suspense fallback={<>Footer Loading...</>}>
         <LazyLoadingComponent />
       </Suspense>

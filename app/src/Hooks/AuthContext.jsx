@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem('isLoggedIn', isLoggedIn);
-        console.log(`Login Status: ${isLoggedIn}`)
     }, [isLoggedIn]);
 
     const login = () => setIsLoggedIn(true);

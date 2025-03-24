@@ -15,11 +15,12 @@
 .i-footer{
     font-size: 20px;
 }
+
 .i-footer i{
   padding: 2px 8px 2px 8px;
 
 }
 .about hr{
   margin: 0px 300px 0px 300px;
-  color: white;
+  color: rgb(255, 255, 255);
 }

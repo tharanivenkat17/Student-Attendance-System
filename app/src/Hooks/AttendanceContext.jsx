@@ -25,7 +25,6 @@ export const AttendanceProvider = ({ children }) => {
 
         const periods = filterDateData.length * 7
         setTotalPeriods(periods)
-        console.log(`Total Days - ${totalDays} TotalPeriods - ${periods}`);
 
         const finalData = {};
 
@@ -44,6 +43,7 @@ export const AttendanceProvider = ({ children }) => {
             }
         });
 
+        // converting into an array
         const finalArrData = [];
 
         Object.keys(finalData).forEach((id) => {

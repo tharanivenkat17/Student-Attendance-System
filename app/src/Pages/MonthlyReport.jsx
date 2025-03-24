@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from 'react';
-import '../Styles/ReportsPage.css'
 import { useAttendanceContext } from '../Hooks/AttendanceContext';
 
 function MonthlyReport() {
@@ -42,8 +41,8 @@ function MonthlyReport() {
         </form>
       </div>
 
-      <div className="container p-4">
-        <table className='table table-bordered p-2'>
+      <div className="container p-5">
+        <table className='table table-bordered mb-5'>
           <thead>
             <tr>
               <td>Student Id</td>

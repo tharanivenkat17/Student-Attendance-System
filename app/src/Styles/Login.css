@@ -1,8 +1,7 @@
 .card {
     padding: 10px;
     margin: 50px auto;
-    max-width: 400px;
-    background-color: rgba(230, 230, 230, 0.829);
+    max-width: 450px;
     border-radius: 10px;
 }
 
@@ -12,6 +11,7 @@
     border-radius: 10px;
     margin: 20px;
     text-align: center;
+    border: 1px solid black;
 }
 
 .flex {
@@ -21,7 +21,7 @@
 
 .flex input {
     border: 1.5px solid black;
-    background-color: rgba(255, 253, 251, 0.648);
+    background-color: rgba(255, 253, 251, 0.986);
     padding: 10px 15px;
     margin: 10px 0;
     border-radius: 5px;
@@ -30,6 +30,7 @@
 
 .flex input::placeholder {
     font-size: 14px;
+    color: rgb(62, 62, 5);
 }
 
 .flex span{
@@ -40,10 +41,11 @@
 }
 
 .button button{
-    background-color: rgba(135, 235, 255, 0.671);
-    padding: 10px;
+    background-color: rgba(135, 235, 255, 0.468);
+    padding: 4px 14px;
     margin-top: 10px;
     color: black;
+    border-radius: 10px;
     font-size: 16px;
     font-weight: bolder;
 }

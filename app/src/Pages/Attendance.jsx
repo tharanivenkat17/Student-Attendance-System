@@ -4,7 +4,8 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Attendance() {
-  const { date, setDate, data, error, attendance, setAttendance } = useAttendance();
+  const [date, setDate] = useState('')
+  const { data, error, attendance, setAttendance } = useAttendance();
 
   // Update the Checkbox
   function handleCheck(studentId, period) {
@@ -37,10 +38,11 @@ function Attendance() {
         console.log('Attendance Data:', attendanceData);
 
         await axios.post('http://localhost:4001/attendance', attendanceData);
-        alert(`Attendance submitted for ${date}`);
-        setDate('');
-        setAttendance({});
-      } catch (error) {
+          alert(`Attendance submitted for ${date}`);
+          setDate('');
+          setAttendance({});
+      } 
+      catch (error) {
         alert(`Error submitting attendance: ${error.message}`);
       }
     };
@@ -63,9 +65,8 @@ function Attendance() {
           onChange={(e) => setDate(e.target.value)}
         />
       </div>
-      <br />
       <div className="container">
-        <table className='table table-bordered p-2'>
+        <table className='table table-bordered '>
           <thead>
             <tr>
               <td>S.No</td>
@@ -83,7 +84,7 @@ function Attendance() {
           <tbody>
             {data && data.map((datum) => (
               <tr key={datum.id}>
-                <td>{datum.id}</td>
+                <td>{datum.id}.</td>
                 <td>{datum.name}</td>
                 <td>{datum.studentId}</td>
                 {[1, 2, 3, 4, 5, 6, 7].map((period) => (
@@ -100,7 +101,7 @@ function Attendance() {
           </tbody>
         </table>
       </div>
-      <div className="d-flex justify-content-center" style={{paddingBottom: '30px'}}>
+      <div className="d-flex justify-content-center" style={{ paddingBottom: '30px' }}>
         <button className="btn btn-success" onClick={handleSubmit}>Submit Attendance</button>
       </div>
     </div>
