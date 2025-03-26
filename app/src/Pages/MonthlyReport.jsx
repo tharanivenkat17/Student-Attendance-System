@@ -42,7 +42,7 @@ function MonthlyReport() {
       </div>
 
       <div className="container p-5">
-        <table className='table table-bordered mb-5'>
+        <table className='table table-bordered text-center mb-5'>
           <thead>
             <tr>
               <td>Student Id</td>

@@ -5,14 +5,18 @@ const AttendanceContext = createContext();
 
 export const AttendanceProvider = ({ children }) => {
     const { storedData } = useStoredData()
-    const [selectedMonth, setselectedMonth] = useState('');
     const [totalPeriods, setTotalPeriods] = useState(0)
     const [days,setDays] = useState(0)
     const [finalArr, setFinalArr] = useState([])
 
     const updateMonthlyReport = (prefix) => {
-        const filterDateData = storedData.filter((item) => item.date.slice(0, 7) === prefix);
-        console.log("filterDateData", filterDateData);
+        const filterDateData = storedData.filter((item) =>{
+            const itemDate = new Date(item.date)
+            const yearMonth = `${itemDate.getFullYear()}-${(itemDate.getMonth()+1).toString().padStart(2,'0')}`
+            return yearMonth === prefix
+            // item.date.slice(0, 7) === prefix
+        });
+        console.log("filter Date Data", filterDateData);
 
         if (filterDateData.length === 0) {
             setFinalArr([])
@@ -49,7 +53,7 @@ export const AttendanceProvider = ({ children }) => {
         Object.keys(finalData).forEach((id) => {
             finalArrData.push({ studentId: id, count: finalData[id], average: ((finalData[id] / periods) * 100) });
         })
-        console.log("finalData", finalArrData);
+        console.log(`Final Data ${finalArrData}`);
         setFinalArr(finalArrData)
     }
 
@@ -57,7 +61,7 @@ export const AttendanceProvider = ({ children }) => {
 
     return (
         <AttendanceContext.Provider 
-            value={{ selectedMonth, setselectedMonth, days, totalPeriods, finalArr:memoizedFinalArr, updateMonthlyReport}}>
+            value={{ days, totalPeriods, finalArr:memoizedFinalArr, updateMonthlyReport}}>
             {children}
         </AttendanceContext.Provider>
     )

@@ -43,7 +43,7 @@ function AttendanceReport() {
       </div>
 
       <div className="container p-4">
-        <table className='table table-bordered p-2'>
+        <table className='table table-bordered text-center p-2'>
           <thead>
             <tr>
               <td>Attendance Date</td>
@@ -64,7 +64,7 @@ function AttendanceReport() {
                 <tr key={datum.data}>
                   <td>{datum.date}</td>
                   {[1, 2, 3, 4, 5, 6, 7].map((period) => (
-                    <td key={period}>{studentAttendance[`period${period}`] ? "1" : "0"}</td>
+                    <td key={period}>{studentAttendance[`period${period}`] ? "✔" : "❌"}</td>
                   ))}
                 </tr>
               )
@@ -76,4 +76,4 @@ function AttendanceReport() {
   );
 }
 
-export default AttendanceReport;
+export default AttendanceReport

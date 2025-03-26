@@ -29,7 +29,8 @@ function Attendance() {
       try {
         const response = await axios.get(`http://localhost:4001/attendance?date=${date}`);
         if (response.data.length > 0) {
-          alert('Attendance for this date has already been entered.');
+          console.log(response.data)
+          alert(`Attendance for ${date} this date has already been entered.`);
           setDate('');
           return;
         }
@@ -38,10 +39,10 @@ function Attendance() {
         console.log('Attendance Data:', attendanceData);
 
         await axios.post('http://localhost:4001/attendance', attendanceData);
-          alert(`Attendance submitted for ${date}`);
-          setDate('');
-          setAttendance({});
-      } 
+        alert(`Attendance submitted for ${date}`);
+        setDate('');
+        setAttendance({});
+      }
       catch (error) {
         alert(`Error submitting attendance: ${error.message}`);
       }
@@ -66,7 +67,7 @@ function Attendance() {
         />
       </div>
       <div className="container">
-        <table className='table table-bordered '>
+        <table className='table table-bordered text-center '>
           <thead>
             <tr>
               <td>S.No</td>
@@ -101,7 +102,7 @@ function Attendance() {
           </tbody>
         </table>
       </div>
-      <div className="d-flex justify-content-center" style={{ paddingBottom: '30px' }}>
+      <div className="text-center pb-5" >
         <button className="btn btn-success" onClick={handleSubmit}>Submit Attendance</button>
       </div>
     </div>
