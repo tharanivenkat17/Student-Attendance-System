@@ -1,0 +1,52 @@
+.body {
+    background-image: url('../assets/loginback.avif');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 510px; 
+    margin-top: -21px;
+}
+
+.body{
+    text-align: center;
+}
+
+.body h1{
+    padding-top: 100px;
+}
+
+.head label{
+    font-size: 16px;
+    padding: 10px;
+}
+
+.head input{
+    font-size: 16px;
+    padding: 2px;
+}
+
+.table{
+    margin: auto;
+    margin-top: 20px;
+    padding: 4px;
+    width: 50%;
+    border: 2px solid #011d5a;
+    border-collapse: collapse;
+}
+
+.table th {
+    padding: 12px 15px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.table td {
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.body button{
+    margin-top: 20px;
+    margin-left: 45%;
+    padding: 7px;
+}
