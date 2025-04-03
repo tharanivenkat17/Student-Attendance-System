@@ -1,18 +1,55 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function AttendanceReport() {
   const [data, setData] = useState();
   const [result, setResult] = useState([]);
+  const [resultSet, setResultSet] = useState([])
 
   function handleSubmit(event) {
     event.preventDefault();
-    const fetchData = async () => {
+    const calculate = async () => {
       try {
         const response = await axios.get(`http://localhost:4001/attendance?studentId=${data}`)
         if (response.data) {
           setResult(response.data);
+
+          const filteredData = response.data
+
+          if (filteredData.length === 0) {
+            setResultSet([])
+            alert(`No Data in this ${data} Student ID`)
+            return
+          }
+
+          const finalData = {};
+
+          filteredData.forEach((item) => {
+            if (item?.['student']) {
+              Object.keys(item?.['student']).forEach((id) => {
+                if (id === data) {
+                  const count = Object.values(item['student'][id]).filter(value => value === true).length;
+
+                  if (finalData[id]) {
+                    finalData[id] += count;
+                  } else {
+                    finalData[id] = count;
+                  }
+                }
+              });
+            }
+          });
+
+          const resultArr = Object.keys(finalData).map(id => ({
+            studentId: id,
+            average: ((finalData[id] / (filteredData.length * 7)) * 100).toFixed(2),
+          }));
+
+          setResultSet(resultArr);
+        } else {
+          setResultSet([]);
+          alert('No data found for this student ID.');
         }
       }
       catch (error) {
@@ -20,10 +57,10 @@ function AttendanceReport() {
         alert('An error occurred while fetching data.');
       }
     }
-    fetchData();
+    calculate()
   }
 
-  const memoizedResult = useMemo(() => result, [result])
+  const totalAttendance = resultSet.length > 0 ? resultSet[0].average : null;
 
   return (
     <div>
@@ -42,8 +79,10 @@ function AttendanceReport() {
         </form>
       </div>
 
+      {totalAttendance && <h5 className='text-center '>Total Attendance Percentage of {data}: {totalAttendance}%</h5>}
+
       <div className="container p-4">
-        <table className='table table-bordered text-center p-2'>
+        <table className="table table-bordered text-center p-2">
           <thead>
             <tr>
               <td>Attendance Date</td>
@@ -57,17 +96,17 @@ function AttendanceReport() {
             </tr>
           </thead>
           <tbody>
-            {memoizedResult.map((datum) => {
+            {result.map((datum) => {
               const studentAttendance = datum.student[data];
               if (!studentAttendance) return null;
               return (
-                <tr key={datum.data}>
+                <tr key={datum.date}>
                   <td>{datum.date}</td>
                   {[1, 2, 3, 4, 5, 6, 7].map((period) => (
                     <td key={period}>{studentAttendance[`period${period}`] ? "✔" : "❌"}</td>
                   ))}
                 </tr>
-              )
+              );
             })}
           </tbody>
         </table>

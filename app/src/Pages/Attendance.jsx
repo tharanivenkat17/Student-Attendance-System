@@ -29,12 +29,13 @@ function Attendance() {
     try {
       const response = await axios.get(`http://localhost:4001/attendance?date=${selectedDate}`);
       if (response.data.length > 0) {
-        const [{student:markedAttendance}] = response.data;
+        const [{ student: markedAttendance }] = response.data;
+        // alert(`Attendance for this date is already marked`)
         setExistingData(markedAttendance);
         console.log('Existing Data:', markedAttendance);
-      } 
+      }
       else {
-        setExistingData({}); 
+        setExistingData({});
       }
     } catch (error) {
       alert(`Error fetching data: ${error.message}`);
@@ -48,8 +49,14 @@ function Attendance() {
       return;
     }
 
-    if (existingData.length === 0) {
-      const attendanceData = { date, student: attendance };
+    if (Object.keys(existingData).length === 0) {
+      const attendanceData = {
+        date,
+        students: Object.keys(attendance).map(studentId => ({
+          studentId,
+          periods: attendance[studentId]
+        }))
+      };
       console.log('Attendance Data:', attendanceData);
 
       try {
@@ -58,6 +65,7 @@ function Attendance() {
         setDate('');
         setAttendance({});
       } catch (error) {
+        console.error("Error submitting attendance:", error.response || error.message);
         alert(`Error submitting attendance: ${error.message}`);
       }
     }
