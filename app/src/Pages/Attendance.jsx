@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import useAttendance from '../Hooks/useAttendance';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useForm } from 'react-hook-form';
+import { FormatDate } from '../utils/FormatDate';
 
 function Attendance() {
-  const [date, setDate] = useState('');
   const { data, error, attendance, setAttendance } = useAttendance();
   const [existingData, setExistingData] = useState({});
+  const { register, handleSubmit, watch, reset } = useForm()
+
+  const date = watch("date") // instead of separate state for date
 
   useEffect(() => {
     if (date) {
@@ -30,7 +34,7 @@ function Attendance() {
       const response = await axios.get(`http://localhost:4001/attendance?date=${selectedDate}`);
       if (response.data.length > 0) {
         const [{ student: markedAttendance }] = response.data;
-        // alert(`Attendance for this date is already marked`)
+        alert(`Attendance for this date[${FormatDate(date)}] is already marked`)
         setExistingData(markedAttendance);
         console.log('Existing Data:', markedAttendance);
       }
@@ -43,7 +47,7 @@ function Attendance() {
   };
 
   // Submit the Attendance
-  const handleSubmit = async () => {
+  const onSubmit = async () => {
     if (!date) {
       alert('Please select a date.');
       return;
@@ -61,9 +65,8 @@ function Attendance() {
 
       try {
         await axios.post('http://localhost:4001/attendance', attendanceData);
-        alert(`Attendance submitted for ${date}`);
-        setDate('');
-        setAttendance({});
+        alert(`Attendance submitted for ${FormatDate(date)}`);
+        reset()
       } catch (error) {
         console.error("Error submitting attendance:", error.response || error.message);
         alert(`Error submitting attendance: ${error.message}`);
@@ -82,9 +85,8 @@ function Attendance() {
         <label className="p-1">Enter Attendance Date:</label>&nbsp;
         <input
           type="date"
-          value={date}
           className="p-1"
-          onChange={(e) => setDate(e.target.value)}
+          {...register('date',{required: true})}
         />
       </div>
       <div className="container">
@@ -105,10 +107,10 @@ function Attendance() {
           </thead>
           <tbody>
             {data &&
-              data.map((datum) => (
+              data.map((datum, index) => (
                 <tr key={datum.id}>
-                  <td>{datum.id}.</td>
-                  <td>{datum.name}</td>
+                  <td>{index + 1}.</td>
+                  <td className='text-start'>{datum.name}</td>
                   <td>{datum.studentId}</td>
                   {[1, 2, 3, 4, 5, 6, 7].map((period) => (
                     <td key={period}>
@@ -132,7 +134,7 @@ function Attendance() {
         </table>
       </div>
       <div className="text-center pb-5">
-        <button className="btn btn-success" onClick={handleSubmit}>
+        <button className="btn btn-success" onClick={handleSubmit(onSubmit)}>
           Submit Attendance
         </button>
       </div>

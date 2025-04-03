@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useMemo, useState } from 'react'
 import useStoredData from './useStoredData';
+import { FormatMonth } from '../utils/FormatMonth';
 
 const AttendanceContext = createContext();
 
@@ -13,14 +14,16 @@ export const AttendanceProvider = ({ children }) => {
         const filterDateData = storedData.filter((item) =>{
             const itemDate = new Date(item.date)
             const yearMonth = `${itemDate.getFullYear()}-${(itemDate.getMonth()+1).toString().padStart(2,'0')}`
+            // const yearMonth = FormatMonth(item.date)
             return yearMonth === prefix
             // item.date.slice(0, 7) === prefix
         });
+          
         console.log("filter Date Data", filterDateData);
 
         if (filterDateData.length === 0) {
             setFinalArr([])
-            alert(`No Data in the ${prefix} Selected Month`)
+            alert(`No Data in the ${FormatMonth(prefix)} Selected Month`)
             return;
         }
 

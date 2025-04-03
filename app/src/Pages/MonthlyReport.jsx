@@ -1,16 +1,19 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useAttendanceContext } from '../Hooks/AttendanceContext';
+import { useForm } from 'react-hook-form';
 
 function MonthlyReport() {
-  const [selectedMonth, setselectedMonth] = useState('');
-
   const { days, totalPeriods, finalArr, updateMonthlyReport } = useAttendanceContext();
 
-  function dateChange(event) {
-    const prefix = event.target.value;
-    setselectedMonth(prefix);
-    updateMonthlyReport(prefix)
-  }
+  const { register, watch } = useForm();
+
+  const selectedMonth = watch('selectedMonth');
+
+  useEffect(() => {
+    if (selectedMonth) {
+      updateMonthlyReport(selectedMonth);
+    }
+  }, [selectedMonth]);
 
   const resultMonthlyReport = useMemo(() => {
     return finalArr.map((data) => {
@@ -33,10 +36,8 @@ function MonthlyReport() {
         <form className='p-1'>
           <input
             type="month"
-            value={selectedMonth}
-            onChange={dateChange}
             className='p-1'
-            required
+            {...register('selectedMonth',{required: true})}
           />
         </form>
       </div>

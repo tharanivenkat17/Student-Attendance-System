@@ -1,121 +1,75 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import '../Styles/Login.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Hooks/AuthContext';
+import { useForm } from 'react-hook-form'
 
 function Login() {
     const { login } = useAuth()
     const navigate = useNavigate();
-    const [state, setState] = useState({
-        userData: { username: '', password: '' },
-        errorField: {}
-    });
 
-    // Update the Changes
-    function handleChange(event) {
-        const updatedData = { ...state.userData };
-        updatedData[event.target.name] = event.target.value;
-
-        setState({
-            ...state,
-            userData: updatedData,
-        });
-    }
+    const { register, handleSubmit, formState: { errors }, setError, clearErrors } = useForm();
 
     // Submit the Login
-    function handleSubmit(event) {
-        event.preventDefault();
-        if (handleValidate()) {
-            const { username, password } = state.userData;
-            const data = { username, password };
-            const fetchData = async () => {
-                try {
-                    const response = await axios.get(`http://localhost:4001/loginDetails?username=${data.username}`)
-                    if (response.data.length === 0) {
-                        setState((prevState) => ({
-                            ...prevState,
-                            errorField: { username: 'No user with this Username' }
-                        }));
-                    } else {
-                        const user = response.data[0];
-                        if (user.password === data.password) {
-                            alert('Login Successful');
-                            login()
-                            setState({
-                                userData: { username: '', password: '' },
-                                errorField: {}
-                            });
-                            navigate('/home');
-                        }
-                        else {
-                            setState((prevState) => ({
-                                ...prevState,
-                                errorField: { password: 'Password does not match' }
-                            }));
-                        }
-                    }
+    const onSubmit = async (data) => {
+        try {
+            const response = await axios.get(`http://localhost:4001/loginDetails?username=${data.username}`)
+            if (response.data.length === 0) {
+                setError('username', { type: 'manual', message: 'No user with this Username' });
+            } 
+            else {
+                const user = response.data[0];
+                if (user.password === data.password) {
+                    alert('Login Successful');
+                    login()
+                    clearErrors();
+                    navigate('/home');
                 }
-                catch (error) {
-                    console.error('Error fetching data:', error);
-                    alert('An error occurred while fetching data.');
+                else {
+                    setError('password', { type: 'manual', message: 'Password does not match' });
                 }
             }
-            fetchData();
         }
-    }
-
-    // Validate the Input Data
-    function handleValidate() {
-        let data = state.userData;
-        let error = {};
-        let validation = true;
-
-        const userNamePattern = /[A-Za-z\d!@#$%^&*]{6,}$/;
-        if (!userNamePattern.test(data['username'])) {
-            validation = false;
-            error['username'] = 'Enter Valid Username';
+        catch (error) {
+            console.error('Error fetching data:', error);
+            alert('An error occurred while fetching data.');
         }
-
-        const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{7,}$/;
-        if (!passwordPattern.test(data['password'])) {
-            validation = false;
-            error['password'] = 'Enter Valid Password';
-        }
-
-        setState((prevState) => ({
-            ...prevState,
-            errorField: error
-        }));
-
-        return validation;
     }
 
     return (
         <div className="card">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <h2>Login</h2>
                 <div className="flex">
                     <input
                         type="text"
                         name="username"
-                        value={state.userData.username}
                         placeholder="Enter Username"
-                        onChange={handleChange}
-                        required
+                        {...register('username', {
+                            required: 'Username is required',
+                            pattern: {
+                                value: /[A-Za-z\d!@#$%^&*]{6,}$/,
+                                message: 'Enter Valid Username'
+                            }
+                        })}
                     />
-                    {state.errorField.username && <span>{state.errorField.username}</span>}
+                    {errors.username && <span>{errors.username.message}</span>}
                 </div>
                 <div className="flex">
                     <input
                         type="password"
                         name="password"
-                        value={state.userData.password}
                         placeholder="Enter Password"
-                        onChange={handleChange}
-                        required
+                        {...register('password', {
+                            required: 'Password is required',
+                            pattern: {
+                                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{7,}$/,
+                                message: 'Enter Valid Password'
+                            }
+                        })}
                     />
-                    {state.errorField.password && <span>{state.errorField.password}</span>}
+                    {errors.password && <span>{errors.password.message}</span>}
                 </div>
                 <div className="button">
                     <button type="Submit">Login</button>
