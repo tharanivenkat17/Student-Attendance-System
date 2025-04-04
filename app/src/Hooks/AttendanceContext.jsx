@@ -12,9 +12,8 @@ export const AttendanceProvider = ({ children }) => {
 
     const updateMonthlyReport = (prefix) => {
         const filterDateData = storedData.filter((item) =>{
-            const itemDate = new Date(item.date)
+            const itemDate = new Date(item.date) 
             const yearMonth = `${itemDate.getFullYear()}-${(itemDate.getMonth()+1).toString().padStart(2,'0')}`
-            // const yearMonth = FormatMonth(item.date)
             return yearMonth === prefix
             // item.date.slice(0, 7) === prefix
         });

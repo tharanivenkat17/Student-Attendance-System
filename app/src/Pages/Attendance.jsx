@@ -10,7 +10,7 @@ function Attendance() {
   const [existingData, setExistingData] = useState({});
   const { register, handleSubmit, watch, reset } = useForm()
 
-  const date = watch("date") // instead of separate state for date
+  const date = watch("date")
 
   useEffect(() => {
     if (date) {
@@ -53,19 +53,31 @@ function Attendance() {
       return;
     }
 
+    // if (Object.keys(existingData).length === 0) {
+    //   const attendanceData = {
+    //     date,
+    //     student: Object.keys(attendance).map(studentId => {
+    //       return {
+    //         [studentId]: attendance[studentId]
+    //       }
+    //     })
+    //   };
+
     if (Object.keys(existingData).length === 0) {
       const attendanceData = {
         date,
-        students: Object.keys(attendance).map(studentId => ({
-          studentId,
-          periods: attendance[studentId]
-        }))
+        student: { 
+          ...Object.keys(attendance).reduce((acc, studentId) => {
+            acc[studentId] = attendance[studentId];
+            return acc;
+          }, {})
+        }
       };
-      console.log('Attendance Data:', attendanceData);
 
       try {
         await axios.post('http://localhost:4001/attendance', attendanceData);
         alert(`Attendance submitted for ${FormatDate(date)}`);
+        setAttendance({})
         reset()
       } catch (error) {
         console.error("Error submitting attendance:", error.response || error.message);
@@ -86,7 +98,7 @@ function Attendance() {
         <input
           type="date"
           className="p-1"
-          {...register('date',{required: true})}
+          {...register('date', { required: true })}
         />
       </div>
       <div className="container">

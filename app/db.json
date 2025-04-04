@@ -730,219 +730,423 @@
     },
     {
       "date": "2025-04-01",
-      "students": [
-        {
-          "studentId": "101",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+      "student": {
+        "101": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
         },
-        {
-          "studentId": "102",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+        "102": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
         },
-        {
-          "studentId": "103",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+        "103": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
         },
-        {
-          "studentId": "104",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+        "104": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
         }
-      ],
+      },
       "id": 17
     },
     {
       "date": "2025-04-02",
-      "students": [
-        {
-          "studentId": "101",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+      "student": {
+        "101": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period7": true,
+          "period6": true
         },
-        {
-          "studentId": "102",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+        "102": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
         },
-        {
-          "studentId": "103",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+        "103": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
         },
-        {
-          "studentId": "104",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+        "104": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
         }
-      ],
+      },
       "id": 18
     },
     {
       "date": "2025-04-03",
-      "students": [
-        {
-          "studentId": "101",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+      "student": {
+        "101": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
         },
-        {
-          "studentId": "102",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+        "102": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
         },
-        {
-          "studentId": "103",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+        "103": {
+          "period6": false,
+          "period7": true,
+          "period5": true,
+          "period4": true,
+          "period3": true,
+          "period2": true,
+          "period1": true
         },
-        {
-          "studentId": "104",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+        "104": {
+          "period7": true,
+          "period6": true,
+          "period5": true,
+          "period4": true,
+          "period3": true,
+          "period2": true,
+          "period1": true
         }
-      ],
+      },
       "id": 19
     },
     {
       "date": "2025-04-04",
-      "students": [
-        {
-          "studentId": "101",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+      "student": {
+        "101": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
         },
-        {
-          "studentId": "102",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+        "102": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
         },
-        {
-          "studentId": "103",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+        "103": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
         },
-        {
-          "studentId": "104",
-          "periods": {
-            "period1": true,
-            "period2": true,
-            "period3": true,
-            "period4": true,
-            "period5": true,
-            "period6": true,
-            "period7": true
-          }
+        "104": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
         }
-      ],
+      },
       "id": 20
+    },
+    {
+      "date": "2025-04-07",
+      "student": {
+        "101": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": false,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "102": {
+          "period1": false,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "103": {
+          "period1": true,
+          "period2": true,
+          "period3": false,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "104": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        }
+      },
+      "id": 21
+    },
+    {
+      "date": "2025-03-17",
+      "student": {
+        "101": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "102": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "103": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "104": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        }
+      },
+      "id": 22
+    },
+    {
+      "date": "2025-03-21",
+      "student": {
+        "101": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "102": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "103": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "104": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        }
+      },
+      "id": 23
+    },
+    {
+      "date": "2025-03-18",
+      "student": {
+        "101": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "102": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "103": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "104": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        }
+      },
+      "id": 24
+    },
+    {
+      "date": "2025-03-20",
+      "student": {
+        "101": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "102": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "103": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "104": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        }
+      },
+      "id": 25
+    },
+    {
+      "date": "2025-03-19",
+      "student": {
+        "101": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "102": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "103": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "104": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        }
+      },
+      "id": 26
     }
   ]
 }
