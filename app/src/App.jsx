@@ -25,19 +25,3 @@ function App() {
   )
 }
 export default App
-
-// import React from 'react';
-
-// const App = () => {
-//   const apiUrl = import.meta.env.VITE_API_URL;
-//   const secretKey = import.meta.env.VITE_SECRET_KEY;
-
-//   return (
-//     <div>
-//       <h5>API URL: {apiUrl}</h5>
-//       <p>Secret Key: {secretKey}</p>
-//     </div>
-//   );
-// };
-
-// export default App;
