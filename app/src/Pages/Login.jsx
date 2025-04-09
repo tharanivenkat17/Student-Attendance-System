@@ -8,13 +8,16 @@ import { useForm } from 'react-hook-form'
 function Login() {
     const { login } = useAuth()
     const navigate = useNavigate();
+    const userData = import.meta.env.VITE_User
+    const UserNamePattern = new RegExp(import.meta.env.React_App_Username_Pattern)
+    const PasswordPattern = new RegExp(import.meta.env.React_App_Password_Pattern)
 
-    const { register, handleSubmit, formState: { errors }, setError, clearErrors } = useForm();
+    const { register, handleSubmit, formState: { errors }, setError, clearErrors, reset } = useForm();
 
     // Submit the Login
     const onSubmit = async (data) => {
         try {
-            const response = await axios.get(`http://localhost:4001/loginDetails?username=${data.username}`)
+            const response = await axios.get(`${userData}?username=${data.username}`)
             if (response.data.length === 0) {
                 setError('username', { type: 'manual', message: 'No user with this Username' });
             } 
@@ -23,6 +26,7 @@ function Login() {
                 if (user.password === data.password) {
                     alert('Login Successful');
                     login()
+                    reset()
                     clearErrors();
                     navigate('/home');
                 }
@@ -44,12 +48,11 @@ function Login() {
                 <div className="flex">
                     <input
                         type="text"
-                        name="username"
                         placeholder="Enter Username"
                         {...register('username', {
                             required: 'Username is required',
                             pattern: {
-                                value: /[A-Za-z\d!@#$%^&*]{6,}$/,
+                                value: UserNamePattern,
                                 message: 'Enter Valid Username'
                             }
                         })}
@@ -59,12 +62,11 @@ function Login() {
                 <div className="flex">
                     <input
                         type="password"
-                        name="password"
                         placeholder="Enter Password"
                         {...register('password', {
                             required: 'Password is required',
                             pattern: {
-                                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{7,}$/,
+                                value: PasswordPattern,
                                 message: 'Enter Valid Password'
                             }
                         })}

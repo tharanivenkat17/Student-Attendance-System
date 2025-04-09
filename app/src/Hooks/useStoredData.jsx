@@ -3,12 +3,13 @@ import axios from 'axios';
 
 function useStoredData() { 
   const [storedData, setStoredData] = useState([]); 
+  const AttendanceData = import.meta.env.VITE_Attendance
 
   useEffect(() => {
 
     const fetchData = async () => {
       try{
-        const response = await axios.get('http://localhost:4001/attendance')
+        const response = await axios.get(`${AttendanceData}`)
         setStoredData(response.data);
       }
       catch(error) {

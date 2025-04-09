@@ -5,12 +5,13 @@ function useAttendance() {
     const [data, setData] = useState([])
     const [error, setError] = useState('')
     const [attendance, setAttendance] = useState({})
+    const StudentData = import.meta.env.VITE_StudentData
 
     // Fetch student data
     useEffect(() => {
         const fetchData = async () => {
             try{
-                const response  = await axios.get('http://localhost:4001/StudentData')
+                const response  = await axios.get(`${StudentData}`)
                 setData(response.data)
                 // Initialize attendance after data is fetched
                 const initialAttendance = response.data.reduce((defaultValue, student) => {

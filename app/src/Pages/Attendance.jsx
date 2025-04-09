@@ -4,11 +4,14 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useForm } from 'react-hook-form';
 import { FormatDate } from '../utils/FormatDate';
+import { format } from 'date-fns';
 
 function Attendance() {
   const { data, error, attendance, setAttendance } = useAttendance();
   const [existingData, setExistingData] = useState({});
   const { register, handleSubmit, watch, reset } = useForm()
+  const AttendanceData = import.meta.env.VITE_Attendance
+  const PresentDate = format(new Date(),  'yyyy-MM-dd')
 
   const date = watch("date")
 
@@ -31,10 +34,10 @@ function Attendance() {
 
   const fetchExistingData = async (selectedDate) => {
     try {
-      const response = await axios.get(`http://localhost:4001/attendance?date=${selectedDate}`);
+      const response = await axios.get(`${AttendanceData}?date=${selectedDate}`);
       if (response.data.length > 0) {
         const [{ student: markedAttendance }] = response.data;
-        alert(`Attendance for this date[${FormatDate(date)}] is already marked`)
+        alert(`Attendance for this date [${FormatDate(date)}] is already marked`)
         setExistingData(markedAttendance);
         console.log('Existing Data:', markedAttendance);
       }
@@ -53,16 +56,6 @@ function Attendance() {
       return;
     }
 
-    // if (Object.keys(existingData).length === 0) {
-    //   const attendanceData = {
-    //     date,
-    //     student: Object.keys(attendance).map(studentId => {
-    //       return {
-    //         [studentId]: attendance[studentId]
-    //       }
-    //     })
-    //   };
-
     if (Object.keys(existingData).length === 0) {
       const attendanceData = {
         date,
@@ -75,7 +68,7 @@ function Attendance() {
       };
 
       try {
-        await axios.post('http://localhost:4001/attendance', attendanceData);
+        await axios.post(`${AttendanceData}` ,attendanceData);
         alert(`Attendance submitted for ${FormatDate(date)}`);
         setAttendance({})
         reset()
@@ -98,7 +91,8 @@ function Attendance() {
         <input
           type="date"
           className="p-1"
-          {...register('date', { required: true })}
+          {...register('date')}
+          max={PresentDate}
         />
       </div>
       <div className="container">

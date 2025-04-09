@@ -8,12 +8,8 @@ function AttendanceReport() {
   const [data, setData] = useState();
   const [result, setResult] = useState([]);
   const [resultSet, setResultSet] = useState([])
-
-  const { register, handleSubmit } = useForm()
-
-  const onSubmit = (data) => {
-    setData(data.studentId)
-  }
+  const AttendanceData = import.meta.env.VITE_Attendance
+  const { register, handleSubmit, formState: { errors } } = useForm()
 
   useEffect(() => {
     if (data) {
@@ -21,43 +17,38 @@ function AttendanceReport() {
     }
   }, [data])
 
+  const onSubmit = (data) => {
+    setData(data.studentId)
+  }
+
   const calculate = async (studentId) => {
     try {
-      const response = await axios.get(`http://localhost:4001/attendance?studentId=${studentId}`);
-      if (response.data) {
-        setResult(response.data)
-        const filteredData = response.data
+      const response = await axios.get(`${AttendanceData}?studentId=${studentId}`);
+      setResult(response.data)
+      const filteredData = response.data;
+      const finalData = {}
 
-        if (filteredData.length === 0) {
-          setResultSet([])
-          alert(`No Data in this ${studentId} Student ID`)
-          return;
+      filteredData.forEach((item) => {
+        if (item?.['student']) {
+          Object.keys(item?.['student']).forEach((id) => {
+            if (id === data) {
+              const count = Object.values(item['student'][id]).filter(value => value === true).length;
+              finalData[id] = finalData[id] ? finalData[id] + count : count;
+            }
+          });
         }
+      });
 
-        const finalData = {}
+      const resultArr = Object.keys(finalData).map(id => ({
+        studentId: id,
+        average: ((finalData[id] / (filteredData.length * 7)) * 100).toFixed(2),
+      }));
 
-        filteredData.forEach((item) => {
-          if (item?.['student']) {
-            Object.keys(item?.['student']).forEach((id) => {
-              if (id === data) {
-                const count = Object.values(item['student'][id]).filter(value => value === true).length;
-                finalData[id] = finalData[id] ? finalData[id] + count : count;
-              }
-            });
-          }
-        });
-
-        const resultArr = Object.keys(finalData).map(id => ({
-          studentId: id,
-          average: ((finalData[id] / (filteredData.length * 7)) * 100).toFixed(2),
-        }));
-
-        setResultSet(resultArr);
-
-      } else {
-        setResultSet([]);
-        alert('No data found for this student ID.');
+      if (resultArr.length === 0) {
+        alert(`No data Found in this ${data} Student Id`)
+        return
       }
+      setResultSet(resultArr);
     }
     catch (error) {
       console.error('Error fetching data:', error);
@@ -76,13 +67,15 @@ function AttendanceReport() {
           <input
             type="number"
             placeholder='Enter Student Id'
-            {...register('studentId',{required: true})}
+            {...register(
+              'studentId', { required: true }
+            )}
           />
-
+          {errors.studentId && <span>{errors.studentId.message}</span>}
         </form>
       </div>
 
-      {totalAttendance && <h5 className='text-center '>Total Attendance Percentage of {data}: {totalAttendance}%</h5>}
+      {totalAttendance && <h5 className='text-center'>Total Attendance Percentage of {data}: {totalAttendance}%</h5> }
 
       <div className="container p-4">
         <table className="table table-bordered text-center p-2">
@@ -109,7 +102,8 @@ function AttendanceReport() {
                   <td>{FormatDate(datum.date)}</td>
                   {[1, 2, 3, 4, 5, 6, 7].map((period) => (
                     <td key={period}>
-                      {studentAttendance[`period${period}`] ? "✔" : "❌"}</td>
+                      {studentAttendance[`period${period}`] ? "✔" : "❌"}
+                    </td>
                   ))}
                 </tr>
               );
