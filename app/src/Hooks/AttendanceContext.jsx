@@ -9,33 +9,34 @@ export const AttendanceProvider = ({ children }) => {
     const [totalPeriods, setTotalPeriods] = useState(0)
     const [days,setDays] = useState(0)
     const [finalArr, setFinalArr] = useState([])
+    const [filterDateData, setFilterDateData] = useState([])
 
     const updateMonthlyReport = (prefix) => {
-        const filterDateData = storedData.filter((item) =>{
+        const filterValue = storedData.filter((item) =>{
             const itemDate = new Date(item.date) 
             const yearMonth = `${itemDate.getFullYear()}-${(itemDate.getMonth()+1).toString().padStart(2,'0')}`
             return yearMonth === prefix
             // item.date.slice(0, 7) === prefix
         });
+        setFilterDateData(filterValue)
           
-        console.log("filter Date Data", filterDateData);
+        console.log("filter Date Data", filterValue);
 
-        if (filterDateData.length === 0) {
+        if (filterValue.length === 0) {
             setFinalArr([])
-            alert(`No Data in the ${FormatMonth(prefix)} Selected Month`)
             return;
         }
 
-        const totalDays = filterDateData.length
+        const totalDays = filterValue.length
         setDays(totalDays)
 
-        const periods = filterDateData.length * 7
+        const periods = totalDays * 7
         setTotalPeriods(periods)
 
         const finalData = {};
 
         // Process Attendance Data for each Id
-        filterDateData.forEach((item) => {
+        filterValue.forEach((item) => {
             if (item?.['student']) {
                 Object.keys(item?.['student']).forEach((id) => {
                     const count = Object.values(item['student'][id]).filter(value => value === true).length;
@@ -63,7 +64,7 @@ export const AttendanceProvider = ({ children }) => {
 
     return (
         <AttendanceContext.Provider 
-            value={{ days, totalPeriods, finalArr:memoizedFinalArr, updateMonthlyReport}}>
+            value={{ days, totalPeriods, finalArr:memoizedFinalArr, updateMonthlyReport, filterDateData}}>
             {children}
         </AttendanceContext.Provider>
     )

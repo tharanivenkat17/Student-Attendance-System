@@ -43,12 +43,8 @@ function AttendanceReport() {
         studentId: id,
         average: ((finalData[id] / (filteredData.length * 7)) * 100).toFixed(2),
       }));
-
-      if (resultArr.length === 0) {
-        alert(`No data Found in this ${data} Student Id`)
-        return
-      }
       setResultSet(resultArr);
+
     }
     catch (error) {
       console.error('Error fetching data:', error);
@@ -68,14 +64,17 @@ function AttendanceReport() {
             type="number"
             placeholder='Enter Student Id'
             {...register(
-              'studentId', { required: true }
+              'studentId'
             )}
           />
           {errors.studentId && <span>{errors.studentId.message}</span>}
         </form>
+
       </div>
 
-      {totalAttendance && <h5 className='text-center'>Total Attendance Percentage of {data}: {totalAttendance}%</h5> }
+      {resultSet.length === 0 && (<p className='text-center'>No student found in {data} this Student ID</p>)}
+
+      {totalAttendance && <h5 className='text-center'>Total Attendance Percentage : {totalAttendance}%</h5>}
 
       <div className="container p-4">
         <table className="table table-bordered text-center p-2">
@@ -83,13 +82,9 @@ function AttendanceReport() {
             <tr>
               <td>S.No</td>
               <td>Attendance Date</td>
-              <td>Period 1</td>
-              <td>Period 2</td>
-              <td>Period 3</td>
-              <td>Period 4</td>
-              <td>Period 5</td>
-              <td>Period 6</td>
-              <td>Period 7</td>
+              {[1, 2, 3, 4, 5, 6, 7].map(period => (
+                <td key={period}>Period {period}</td>
+              ))}
             </tr>
           </thead>
           <tbody>

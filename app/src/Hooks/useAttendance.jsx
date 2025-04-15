@@ -7,6 +7,12 @@ function useAttendance() {
     const [attendance, setAttendance] = useState({})
     const StudentData = import.meta.env.VITE_StudentData
 
+    useEffect(() => {
+        if (Object.keys(attendance).length > 0) {
+          localStorage.setItem('attendanceData', JSON.stringify(attendance));
+        }
+      }, [attendance]);
+
     // Fetch student data
     useEffect(() => {
         const fetchData = async () => {
