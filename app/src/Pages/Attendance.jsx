@@ -9,7 +9,9 @@ import { format } from 'date-fns';
 function Attendance() {
   const { data, error, attendance, setAttendance } = useAttendance();
   const [existingData, setExistingData] = useState({});
+  const [save, setSave] = useState('')
   const currentDate = new Date().toISOString().slice(0, 10);
+  const [isAfter3, setIsAfter3] = useState(false)
   const { register, handleSubmit, watch, reset } = useForm({
     defaultValues: {
       date: currentDate
@@ -20,12 +22,14 @@ function Attendance() {
 
   const date = watch("date")
 
+  // Auto submit the data after 5.30pm and enable the submit button after 3pm 
   useEffect(() => {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
-    const isAfter620 = hours > 18 || (hours === 18 && minutes >= 23);
-    if (isAfter620) {
+    setIsAfter3(hours >= 15);
+    const isAfter530 = hours > 17 || (hours === 17 && minutes >= 30);
+    if (isAfter530) { 
       if (Object.keys(existingData).length === 0 && date === currentDate) {
         const timeout = setTimeout(() => {
           handleSubmit(onSubmit)();
@@ -36,29 +40,10 @@ function Attendance() {
   }, [existingData, date, currentDate])
 
   useEffect(() => {
-    const savedAttendance = localStorage.getItem('attendanceData');
-    if (savedAttendance) {
-      setAttendance(JSON.parse(savedAttendance));
-    }
-  }, []);
-
-  useEffect(() => {
     if (date) {
       fetchExistingData(date);
     }
   }, [date]);
-
-
-  // Update the Checkbox
-  function handleCheck(studentId, period) {
-    setAttendance((prevState) => ({
-      ...prevState,
-      [studentId]: {
-        ...prevState[studentId],
-        [period]: !prevState[studentId]?.[period],
-      },
-    }));
-  }
 
   const fetchExistingData = async (selectedDate) => {
     try {
@@ -76,6 +61,28 @@ function Attendance() {
     }
   };
 
+  // Update the Checkbox
+  const handleCheck = ((studentId, period) => {
+    setAttendance((prevState) => ({
+      ...prevState,
+      [studentId]: {
+        ...prevState[studentId],
+        [period]: !prevState[studentId]?.[period],
+      },
+    }));
+  })
+
+  const handleSave = (() => {
+    if (Object.keys(attendance).length > 0) {
+      localStorage.setItem('attendanceData', JSON.stringify(attendance));
+      setSave("Saved the Data");
+
+      setTimeout(() => {
+        setSave('');
+      }, 2000);
+    }
+  })
+
   // Submit the Attendance
   const onSubmit = async () => {
     if (!date) {
@@ -86,19 +93,16 @@ function Attendance() {
     if (Object.keys(existingData).length === 0) {
       const attendanceData = {
         date,
-        student: {
-          ...Object.keys(attendance).reduce((acc, studentId) => {
-            acc[studentId] = attendance[studentId];
-            return acc;
-          }, {})
-        }
-      };
+        student: { ...attendance }
+      }
 
       try {
         await axios.post(`${AttendanceData}`, attendanceData);
         alert(`Attendance submitted for ${FormatDate(date)}`);
         setAttendance({})
+        localStorage.removeItem('attendanceData');
         reset()
+        window.location.reload();
       } catch (error) {
         console.error("Error submitting attendance:", error.response || error.message);
         alert(`Error submitting attendance: ${error.message}`);
@@ -122,6 +126,15 @@ function Attendance() {
           max={PresentDate}
         />
       </div>
+
+      {save && (
+        <p className='text-center'>
+          <span className="bg-secondary text-light px-2 py-2 rounded ">
+            {save}
+          </span>
+        </p>
+      )}
+
       <div className="container">
         {Object.keys(existingData).length > 0 ? (<p className='text-center p-5'>Attendance for this date [{FormatDate(date)}] is already marked</p>) : (
           <table className="table table-bordered text-center">
@@ -159,10 +172,11 @@ function Attendance() {
       </div>
       {Object.keys(existingData).length > 0 ? null : (
         <div className="text-center pb-5">
-          <button className='btn btn-primary'>
+          <button className='btn btn-primary' onClick={handleSave}>
             Save Attendance
           </button>&nbsp;&nbsp;
-          <button className="btn btn-success" onClick={handleSubmit(onSubmit)}>
+
+          <button className="btn btn-success" onClick={handleSubmit(onSubmit)}  disabled={!isAfter3}>
             Submit Attendance
           </button>
         </div>

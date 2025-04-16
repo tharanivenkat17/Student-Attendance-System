@@ -7,43 +7,44 @@ function useAttendance() {
     const [attendance, setAttendance] = useState({})
     const StudentData = import.meta.env.VITE_StudentData
 
-    useEffect(() => {
-        if (Object.keys(attendance).length > 0) {
-          localStorage.setItem('attendanceData', JSON.stringify(attendance));
-        }
-      }, [attendance]);
-
     // Fetch student data
     useEffect(() => {
         const fetchData = async () => {
-            try{
-                const response  = await axios.get(`${StudentData}`)
+            try {
+                const response = await axios.get(`${StudentData}`)
                 setData(response.data)
-                // Initialize attendance after data is fetched
-                const initialAttendance = response.data.reduce((defaultValue, student) => {
-                    defaultValue[student.studentId] = {
-                        period1: false,
-                        period2: false,
-                        period3: false,
-                        period4: false,
-                        period5: false,
-                        period6: false,
-                        period7: false
-                    };
-                    return defaultValue;
-                }, {});
-                setAttendance(initialAttendance)
+
+                const savedAttendance = localStorage.getItem('attendanceData');
+                if (savedAttendance) {
+                    setAttendance(JSON.parse(savedAttendance));
+                }
+                else {
+                    // Initialize attendance after data is fetched
+                    const initialAttendance = response.data.reduce((defaultValue, student) => {
+                        defaultValue[student.studentId] = {
+                            period1: false,
+                            period2: false,
+                            period3: false,
+                            period4: false,
+                            period5: false,
+                            period6: false,
+                            period7: false
+                        };
+                        return defaultValue;
+                    }, {});
+                    setAttendance(initialAttendance)
+                }
             }
-            catch(error) {
+            catch (error) {
                 setError(error.message)
             }
         }
-        fetchData();    
+        fetchData();
     }, [])
 
     const memoizedAttendance = useMemo(() => attendance, [attendance])
 
-  return { data, error, attendance:memoizedAttendance, setAttendance }
+    return { data, error, attendance: memoizedAttendance, setAttendance }
 }
 
 export default useAttendance

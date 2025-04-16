@@ -6,17 +6,19 @@ import { FormatMonth } from '../utils/FormatMonth';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
-
 function MonthlyReport() {
   // Monthly report
   const { days, totalPeriods, finalArr, updateMonthlyReport, filterDateData } = useAttendanceContext();
+  const [selectStudentID, setSelectStudentID] = useState('All')
   const currentMonth = new Date().toISOString().slice(0, 7);
   const { register, watch } = useForm({
     defaultValues: {
       selectedMonth: currentMonth
     }
   });
+
   const selectedMonth = watch('selectedMonth');
+
   useEffect(() => {
     if (selectedMonth) {
       updateMonthlyReport(selectedMonth);
@@ -36,25 +38,32 @@ function MonthlyReport() {
     ));
   }, [finalArr, days, totalPeriods]);
 
-  // group the data and make as array to display all data in that month
+  // group the data to make as array to display all data in that month
   const groupedData = useMemo(() => {
     const grouped = {};
 
     filterDateData.forEach(datum => {
       const date = datum.date;
-
       if (!grouped[date]) {
         grouped[date] = [];
       }
-
       Object.entries(datum.student).forEach(([studentId, periods]) => {
         grouped[date].push({
           studentId,
           ...periods
         });
-      })
+      });
     });
     return grouped;
+  }, [filterDateData]);
+
+
+  const studentIds = useMemo(() => {
+    const ids = new Set();
+    filterDateData.forEach(datum => {
+      Object.keys(datum.student).forEach(id => ids.add(id));
+    });
+    return Array.from(ids).sort();
   }, [filterDateData]);
 
 
@@ -91,13 +100,14 @@ function MonthlyReport() {
 
         {/* dropdown for filter data of all date in that month */}
         <div className='text-center p-4'>
-          <DropdownButton id="dropdown-basic-button" title="Filter data with Student ID">
-            <Dropdown.Item >101</Dropdown.Item>
-            <Dropdown.Item >102</Dropdown.Item>
-            <Dropdown.Item >103</Dropdown.Item>
-            <Dropdown.Item >104</Dropdown.Item>
+          <DropdownButton id="dropdown-basic-button" title={`Filter by Student ID (${selectStudentID})`}>
+            {studentIds.map(id => (
+              <Dropdown.Item key={id} onClick={() => setSelectStudentID(id)}>
+                {id}
+              </Dropdown.Item>
+            ))}
             <Dropdown.Divider />
-            <Dropdown.Item >All Students</Dropdown.Item>
+            <Dropdown.Item onClick={() => setSelectStudentID('All')}>All Students</Dropdown.Item>
           </DropdownButton>
         </div>
 
@@ -105,40 +115,48 @@ function MonthlyReport() {
         {Object.keys(groupedData).length === 0 ? (
           <p className='text-center'>No Attendance data {FormatMonth(selectedMonth)} in this month.</p>
         ) : (
-          Object.entries(groupedData).map(([date, students]) => (
-            <div key={date} className='mb-5'>
-              <h5 className='text-center'>Date: {FormatDate(date)}</h5>
-              <table className="table table-bordered text-center">
-                <thead>
-                  <tr>
-                    <th>Student Id</th>
-                    {[1, 2, 3, 4, 5, 6, 7].map(period => (
-                      <th key={period}>Period {period}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {students.map((student, index) => (
-                    <tr key={`${student.studentId}-${index}`}>
-                      <td>{student.studentId}</td>
+          Object.entries(groupedData).map(([date, students]) => {
+            // Filter students if specific student is selected
+            const filteredStudents = selectStudentID === 'All'
+              ? students
+              : students.filter(s => s.studentId === selectStudentID);
+
+            return (
+              <div key={date} className='mb-5'>
+                <h5 className='text-center'>Date: {FormatDate(date)}</h5>
+                <table className="table table-bordered text-center">
+                  <thead>
+                    <tr>
+                      <th>Student Id</th>
                       {[1, 2, 3, 4, 5, 6, 7].map(period => (
-                        <td key={period}>
-                          <input
-                            type="checkbox"
-                            checked={student[`period${period}`] || false}
-                            readOnly
-                          />
-                        </td>
+                        <th key={period}>Period {period}</th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-              <div className='text-end'>
-                <button className='btn btn-success text'> Edit </button>
+                  </thead>
+                  <tbody>
+                    {filteredStudents.map((student, index) => (
+                      <tr key={`${student.studentId}-${index}`}>
+                        <td>{student.studentId}</td>
+                        {[1, 2, 3, 4, 5, 6, 7].map(period => (
+                          <td key={period}>
+                            <input
+                              type="checkbox"
+                              checked={student[`period${period}`] || false}
+                              readOnly
+                            />
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {/* edit button to edit the data of that table */}
+                <div className='text-end'>
+                  <button className='btn btn-success text'> Edit </button>
+                </div>
               </div>
-            </div>
-          ))
+            );
+          })
         )}
       </div>
 
