@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { FormatDate } from '../utils/FormatDate';
 
 function AttendanceReport() {
-  const [data, setData] = useState();
+  const [data, setData] = useState(0);
   const [result, setResult] = useState([]);
   const [resultSet, setResultSet] = useState([])
   const AttendanceData = import.meta.env.VITE_Attendance
@@ -72,7 +72,7 @@ function AttendanceReport() {
 
       </div>
 
-      {resultSet.length === 0 && (<p className='text-center'>No student found in {data} this Student ID</p>)}
+      {resultSet.length === 0 && (<p className='text-center'>No student found in {data} Student ID</p>)}
 
       {totalAttendance && <h5 className='text-center'>Total Attendance Percentage : {totalAttendance}%</h5>}
 

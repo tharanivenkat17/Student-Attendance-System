@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useMemo, useState } from 'react'
-import useStoredData from './useStoredData';
+import useStoredData from './useStoredData'
 
 const AttendanceContext = createContext();
 

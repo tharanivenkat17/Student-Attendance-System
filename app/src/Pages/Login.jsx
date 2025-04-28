@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import '../Styles/Login.css';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../Hooks/AuthContext';
 import { useForm } from 'react-hook-form'
+import { useAuth } from '../Hooks/AuthContext'
+import useUserName from '../Hooks/useUserName';
 
 function Login() {
-    const { login } = useAuth()
+    const { login } = useAuth();
     const navigate = useNavigate();
     const userData = import.meta.env.VITE_User
     const UserNamePattern = new RegExp(import.meta.env.React_App_Username_Pattern)
     const PasswordPattern = new RegExp(import.meta.env.React_App_Password_Pattern)
 
+    const { setUserName } = useUserName();
     const { register, handleSubmit, formState: { errors }, setError, clearErrors, reset } = useForm();
 
     // Submit the Login
@@ -24,6 +26,7 @@ function Login() {
             else {
                 const user = response.data[0];
                 if (user.password === data.password) {
+                    setUserName(user.username)
                     alert('Login Successful');
                     login()
                     reset()
@@ -31,7 +34,7 @@ function Login() {
                     navigate('/home');
                 }
                 else {
-                    setError('password', { type: 'manual', message: 'Password does not match' });
+                    setError('password', { type: 'manual', message: 'Username / Password does not match' });
                 }
             }
         }

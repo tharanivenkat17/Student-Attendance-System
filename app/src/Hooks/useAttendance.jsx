@@ -14,11 +14,11 @@ function useAttendance() {
                 const response = await axios.get(`${StudentData}`)
                 setData(response.data)
 
-                const savedAttendance = localStorage.getItem('attendanceData');
-                if (savedAttendance) {
-                    setAttendance(JSON.parse(savedAttendance));
-                }
-                else {
+                // const savedAttendance = localStorage.getItem('attendanceData');
+                // if (savedAttendance) {
+                //     setAttendance(JSON.parse(savedAttendance));
+                // }
+                // else {
                     // Initialize attendance after data is fetched
                     const initialAttendance = response.data.reduce((defaultValue, student) => {
                         defaultValue[student.studentId] = {
@@ -34,7 +34,7 @@ function useAttendance() {
                     }, {});
                     setAttendance(initialAttendance)
                 }
-            }
+            // }
             catch (error) {
                 setError(error.message)
             }

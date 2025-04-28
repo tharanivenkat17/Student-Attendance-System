@@ -4,6 +4,11 @@
       "username": "Teacher@123",
       "password": "t1a7@V01",
       "id": 1
+    },
+    {
+      "username": "Principal@123",
+      "password": "p1a7@V01",
+      "id": 2
     }
   ],
   "StudentData": [
@@ -59,6 +64,7 @@
   "attendance": [
     {
       "date": "2025-02-24",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -85,7 +91,7 @@
           "period4": true,
           "period5": true,
           "period6": true,
-          "period7": false
+          "period7": true
         },
         "104": {
           "period1": true,
@@ -94,13 +100,14 @@
           "period4": true,
           "period5": true,
           "period6": true,
-          "period7": false
+          "period7": true
         }
       },
       "id": 1
     },
     {
       "date": "2025-02-25",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -143,6 +150,7 @@
     },
     {
       "date": "2025-02-26",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -185,6 +193,7 @@
     },
     {
       "date": "2025-02-27",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -227,6 +236,7 @@
     },
     {
       "date": "2025-02-28",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -269,6 +279,7 @@
     },
     {
       "date": "2025-03-03",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -311,6 +322,7 @@
     },
     {
       "date": "2025-03-04",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -353,6 +365,7 @@
     },
     {
       "date": "2025-03-05",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -395,6 +408,7 @@
     },
     {
       "date": "2025-03-06",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -436,6 +450,7 @@
     },
     {
       "date": "2025-03-07",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -478,6 +493,7 @@
     },
     {
       "date": "2025-03-10",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -520,6 +536,7 @@
     },
     {
       "date": "2025-03-11",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -562,6 +579,7 @@
     },
     {
       "date": "2025-03-12",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -604,6 +622,7 @@
     },
     {
       "date": "2025-03-13",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -646,6 +665,7 @@
     },
     {
       "date": "2025-03-14",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -688,6 +708,7 @@
     },
     {
       "date": "2025-03-17",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -730,6 +751,7 @@
     },
     {
       "date": "2025-03-18",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -772,6 +794,7 @@
     },
     {
       "date": "2025-03-19",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -814,6 +837,7 @@
     },
     {
       "date": "2025-03-20",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -856,6 +880,7 @@
     },
     {
       "date": "2025-03-21",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -898,6 +923,7 @@
     },
     {
       "date": "2025-03-24",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -940,6 +966,7 @@
     },
     {
       "date": "2025-03-25",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -982,6 +1009,7 @@
     },
     {
       "date": "2025-03-26",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -1024,6 +1052,7 @@
     },
     {
       "date": "2025-03-27",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -1066,6 +1095,7 @@
     },
     {
       "date": "2025-03-28",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -1108,6 +1138,7 @@
     },
     {
       "date": "2025-03-31",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -1134,7 +1165,7 @@
           "period4": true,
           "period5": true,
           "period6": true,
-          "period7": true
+          "period7": false
         },
         "104": {
           "period1": true,
@@ -1150,6 +1181,7 @@
     },
     {
       "date": "2025-04-01",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -1185,7 +1217,7 @@
           "period4": true,
           "period5": true,
           "period6": true,
-          "period7": true
+          "period7": false
         }
       },
       "id": 27
@@ -1234,6 +1266,7 @@
     },
     {
       "date": "2025-04-03",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -1254,7 +1287,7 @@
           "period7": true
         },
         "103": {
-          "period6": false,
+          "period6": true,
           "period7": true,
           "period5": true,
           "period4": true,
@@ -1263,7 +1296,7 @@
           "period1": true
         },
         "104": {
-          "period7": true,
+          "period7": false,
           "period6": true,
           "period5": true,
           "period4": true,
@@ -1276,6 +1309,7 @@
     },
     {
       "date": "2025-04-04",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -1318,12 +1352,13 @@
     },
     {
       "date": "2025-04-07",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
           "period2": true,
           "period3": true,
-          "period4": false,
+          "period4": true,
           "period5": true,
           "period6": true,
           "period7": true
@@ -1360,6 +1395,50 @@
     },
     {
       "date": "2025-04-16",
+      "isAttendance": true,
+      "student": {
+        "101": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": false
+        },
+        "102": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "103": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "104": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": false
+        }
+      },
+      "id": 32
+    },
+    {
+      "date": "2025-04-21",
+      "isAttendance": true,
       "student": {
         "101": {
           "period1": true,
@@ -1395,10 +1474,96 @@
           "period4": true,
           "period5": true,
           "period6": true,
+          "period7": true
+        }
+      },
+      "id": 33
+    },
+    {
+      "date": "2025-04-24",
+      "isAttendance": true,
+      "student": {
+        "101": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "102": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "103": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        },
+        "104": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": true,
+          "period6": true,
+          "period7": true
+        }
+      },
+      "id": 34
+    },
+    {
+      "date": "2025-04-25",
+      "student": {
+        "101": {
+          "period1": true,
+          "period2": true,
+          "period3": true,
+          "period4": true,
+          "period5": false,
+          "period6": false,
+          "period7": false
+        },
+        "102": {
+          "period1": true,
+          "period2": false,
+          "period3": false,
+          "period4": false,
+          "period5": false,
+          "period6": false,
+          "period7": false
+        },
+        "103": {
+          "period1": false,
+          "period2": false,
+          "period3": false,
+          "period4": true,
+          "period5": false,
+          "period6": false,
+          "period7": false
+        },
+        "104": {
+          "period1": false,
+          "period2": false,
+          "period3": false,
+          "period4": false,
+          "period5": true,
+          "period6": false,
           "period7": false
         }
       },
-      "id": 32
+      "isAttendance": true,
+      "id": 35
     }
   ]
 }

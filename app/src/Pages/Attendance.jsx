@@ -79,7 +79,7 @@ function Attendance() {
 
       setTimeout(() => {
         setSave('');
-      }, 2000);
+      }, 1000);
     }
   })
 

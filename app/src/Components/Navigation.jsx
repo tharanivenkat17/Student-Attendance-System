@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 import Attendance from '../Pages/Attendance';
 import MonthlyReport from '../Pages/MonthlyReport';
 import AttendanceReport from '../Pages/AttendanceReport';
-import { useAuth } from '../Hooks/AuthContext';
 import '../Styles/Navigation.css';
 import PrivateRoute from './PrivateRoute';
+import { useAuth } from '../Hooks/AuthContext';
 
 function Navigation() {
   const { isLoggedIn, logout } = useAuth();
@@ -33,7 +33,7 @@ function Navigation() {
           )} &nbsp;&nbsp;
           {isLoggedIn && (
             <Link to="/attendancereport">
-              <i className="fa-regular fa-rectangle-list"></i> AttendanceReport
+              <i className="fa-regular fa-rectangle-list"></i> Attendance Report
             </Link>
           )}
         </div>
@@ -55,6 +55,7 @@ function Navigation() {
           <Route path="/monthlyreport" element={<MonthlyReport />} />
           <Route path="/attendancereport" element={<AttendanceReport />} />
         </Route>
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
