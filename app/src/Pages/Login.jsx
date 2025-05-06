@@ -3,8 +3,8 @@ import axios from 'axios';
 import '../Styles/Login.css';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
-import { useAuth } from '../Hooks/AuthContext'
-import useUserName from '../Hooks/useUserName';
+import { useUserName } from '../Hooks/UserContext';
+import { useAuth } from '../Components/AuthContext';
 
 function Login() {
     const { login } = useAuth();

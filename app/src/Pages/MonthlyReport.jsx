@@ -8,7 +8,7 @@ import useMonthlyReport from '../Hooks/useMonthlyReport';
 import { useAttendanceContext } from '../Hooks/AttendanceContext';
 import useDropDown from '../Hooks/useDropDown';
 import useEditSave from '../Hooks/useEditSave';
-import useUserName from '../Hooks/useUserName';
+import { useUserName } from '../Hooks/UserContext';
 
 function MonthlyReport() {
   const { updateMonthlyReport, filterDateData } = useAttendanceContext();
@@ -55,12 +55,20 @@ function MonthlyReport() {
       }
       setEditDate(null);
     } else {
+
       const initialEdited = {};
       Object.entries(specificMonthData).forEach(([date, students]) => {
         initialEdited[date] = students.map((s) => ({ ...s }));
       });
       setEditedData(initialEdited);
       setEditDate('editing');
+
+      // const initialEdited = {};
+      // Object.entries(specificMonthData).forEach(([date, students]) => {
+      //   initialEdited[date] = students.map((s) => ({ ...s }));
+      // });
+      // setEditedData(initialEdited);
+      // setEditDate('editing');
     }
   };
 
@@ -153,10 +161,18 @@ function MonthlyReport() {
                             <td rowSpan={filteredStudents.length}>{FormatDate(date)}</td>
                           )}
                           {[1, 2, 3, 4, 5, 6, 7].map((period) => {
+                            // const checked =
+                            //   isEditing && editedData[date]?.[index]
+                            //     ? editedData[date][index][`period${period}`] || false
+                            //     : student[`period${period}`] || false;
+
+                            const editedStudent = editedData[date]?.find(s => s.studentId === student.studentId);
+
                             const checked =
-                              isEditing && editedData[date]?.[index]
-                                ? editedData[date][index][`period${period}`] || false
+                              isEditing && editedStudent
+                                ? editedStudent[`period${period}`] || false
                                 : student[`period${period}`] || false;
+
 
                             return (
                               <td key={period}>
@@ -167,11 +183,21 @@ function MonthlyReport() {
                                   onChange={(e) => {
                                     if (isEditing) {
                                       setEditedData((prev) => {
+
                                         const updated = [...(prev[date] || students)];
-                                        updated[index] = {
-                                          ...updated[index],
-                                          [`period${period}`]: e.target.checked,
-                                        };
+                                        const studentIndex = updated.findIndex(s => s.studentId === student.studentId);
+                                        if (studentIndex !== -1) {
+                                          updated[studentIndex] = {
+                                            ...updated[studentIndex],
+                                            [`period${period}`]: e.target.checked,
+                                          };
+                                        }
+
+                                        // const updated = [...(prev[date] || students)];
+                                        // updated[index] = {
+                                        //   ...updated[index],
+                                        //   [`period${period}`]: e.target.checked,
+                                        // };
                                         return { ...prev, [date]: updated };
                                       });
                                     }
@@ -192,10 +218,12 @@ function MonthlyReport() {
 
         {/* button to edit and save */}
         <div className="text-end">
-          {selectStudentID !== 'Select ID' &&
-            <button className="btn btn-success" disabled={userName !== 'Principal@123'} onClick={handleEditSave} >
-              {editDate ? 'Save' : 'Edit'}
-            </button>
+          {userName == 'Principal@123' &&
+            (selectStudentID !== 'Select ID' &&
+              <button className="btn btn-success" onClick={handleEditSave} >
+                {editDate ? 'Save' : 'Edit'}
+              </button>
+            )
           }
         </div>
 

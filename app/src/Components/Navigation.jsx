@@ -7,7 +7,7 @@ import MonthlyReport from '../Pages/MonthlyReport';
 import AttendanceReport from '../Pages/AttendanceReport';
 import '../Styles/Navigation.css';
 import PrivateRoute from './PrivateRoute';
-import { useAuth } from '../Hooks/AuthContext';
+import { useAuth } from './AuthContext';
 
 function Navigation() {
   const { isLoggedIn, logout } = useAuth();
