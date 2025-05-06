@@ -9,6 +9,7 @@ import { useAttendanceContext } from '../Hooks/AttendanceContext';
 import useDropDown from '../Hooks/useDropDown';
 import useEditSave from '../Hooks/useEditSave';
 import { useUserName } from '../Hooks/UserContext';
+import useStudentName from '../Hooks/useStudentName';
 
 function MonthlyReport() {
   const { updateMonthlyReport, filterDateData } = useAttendanceContext();
@@ -16,6 +17,7 @@ function MonthlyReport() {
   const { studentIds, selectStudentID, setSelectStudentID } = useDropDown();
   const { editedData, setEditedData, saveEditedAttendance } = useEditSave();
   const { userName } = useUserName();
+  const { studentData } = useStudentName();
 
   const [editDate, setEditDate] = useState(null);
   const currentMonth = new Date().toISOString().slice(0, 7);
@@ -26,6 +28,12 @@ function MonthlyReport() {
     }
   });
   const selectedMonth = watch('selectedMonth');
+  
+  // student Name
+  const selectedStudent = studentData.find(
+    (student) => student.studentId.toString() === selectStudentID
+  );
+  const studentName = selectedStudent?.name || '';
 
   // to select the month
   useEffect(() => {
@@ -135,7 +143,7 @@ function MonthlyReport() {
           ) : (
             <div>
               {selectStudentID !== 'Select ID' &&
-                <h4 className='text-center p-3'>Displaying the records of the student ID {selectStudentID}</h4>
+                <h4 className='text-center p-3'>Displaying records for Student ID {selectStudentID} - {studentName}</h4>
               }
               <table className="table table-bordered text-center">
                 <thead>
