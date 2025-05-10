@@ -1,0 +1,21 @@
+.Header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: rgba(51, 8, 8, 0.631);
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-weight: 600;
+    padding: 14px 16px;
+}
+
+.Header a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.Header a:hover, i:hover {
+    padding: 2px;
+    background-color: aliceblue;
+    color: rgb(137, 25, 141);
+}

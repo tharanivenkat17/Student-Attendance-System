@@ -1,14 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 function Home() {
   return (
-    <div>
-      <img src='Home.avif' alt='Home'>
-        <h1>Welcome to School Attendance System</h1>
-      </img>
-
+    <div style={{ padding:'100px' }}>
+        <h1 className="text-center p-5">Welcome to the Student Attendance System</h1>
     </div>
   )
 }
 
-export default Home
+export default Home;
