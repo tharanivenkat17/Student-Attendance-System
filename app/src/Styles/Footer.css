@@ -1,0 +1,25 @@
+.about {
+    padding: 10px;
+    background-color: #250606a1;
+    color: white;
+    text-align: center;
+}
+.about h2{
+  font-size: 18px;
+}
+
+.about p{
+  font-size: 14px;
+}
+
+.i-footer{
+    font-size: 20px;
+}
+.i-footer i{
+  padding: 2px 8px 2px 8px;
+
+}
+.about hr{
+  margin: 0px 300px 0px 300px;
+  color: white;
+}

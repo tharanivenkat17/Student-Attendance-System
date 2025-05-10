@@ -1,0 +1,10 @@
+tr {
+    padding: 12px 15px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+td {
+    border: 1px solid #ddd;
+    text-align: center;
+}
