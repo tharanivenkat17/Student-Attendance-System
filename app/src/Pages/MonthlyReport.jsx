@@ -1,9 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormatDate } from '../utils/FormatDate';
-import { FormatMonth } from '../utils/FormatMonth';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+
+import { FormatDate } from '../utils/FormatDate';
+import { FormatMonth } from '../utils/FormatMonth';
+import '../Styles/table.css';
+
 import useMonthlyReport from '../Hooks/useMonthlyReport';
 import { useAttendanceContext } from '../Hooks/AttendanceContext';
 import useDropDown from '../Hooks/useDropDown';

@@ -209,6 +209,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
 import '../Styles/Attendance.css';
+import '../Styles/table.css';
 import useAttendance from '../Hooks/useAttendance';
 import { FormatDate } from '../utils/FormatDate';
 

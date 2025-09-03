@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form'
 
 import '../Styles/AttendanceReport.css'
+import '../Styles/table.css';
 import { FormatDate } from '../utils/FormatDate';
 
 function AttendanceReport() {
@@ -76,36 +77,34 @@ function AttendanceReport() {
 
       {totalAttendance && <h5 className='text-center'>Total Attendance Percentage : {totalAttendance}%</h5>}
 
-      <div className="container p-4">
-        <table className="table table-bordered text-center p-2">
-          <thead>
-            <tr>
-              <td>S.No</td>
-              <td>Attendance Date</td>
-              {[1, 2, 3, 4, 5, 6, 7].map(period => (
-                <td key={period}>Period {period}</td>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {result.map((datum, index) => {
-              const studentAttendance = datum.student?.[data];
-              if (!studentAttendance) return null;
-              return (
-                <tr key={datum.date}>
-                  <td>{index + 1}.</td>
-                  <td>{FormatDate(datum.date)}</td>
-                  {[1, 2, 3, 4, 5, 6, 7].map((period) => (
-                    <td key={period}>
-                      {studentAttendance[`period${period}`] ? "✔" : "❌"}
-                    </td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      <table className="table table-bordered text-center">
+        <thead>
+          <tr>
+            <td>S.No</td>
+            <td>Attendance Date</td>
+            {[1, 2, 3, 4, 5, 6, 7].map(period => (
+              <td key={period}>Period {period}</td>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {result.map((datum, index) => {
+            const studentAttendance = datum.student?.[data];
+            if (!studentAttendance) return null;
+            return (
+              <tr key={datum.date}>
+                <td>{index + 1}.</td>
+                <td>{FormatDate(datum.date)}</td>
+                {[1, 2, 3, 4, 5, 6, 7].map((period) => (
+                  <td key={period}>
+                    {studentAttendance[`period${period}`] ? "✔" : "❌"}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }
