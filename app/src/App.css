@@ -1,0 +1,7 @@
+.table-bordered {
+    border: 1.5px solid #000 !important; 
+  }
+  
+  .table-bordered td, .table-bordered th {
+    border: 1.5px solid #000 !important; 
+  }
