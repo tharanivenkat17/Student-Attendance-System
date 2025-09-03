@@ -2,20 +2,52 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: rgba(51, 8, 8, 0.631);
-    color: rgb(255, 255, 255);
-    font-size: 18px;
+    align-items: center;
+    background-color: #fff8f0; /* Very light cream */
+    color: #5a4a42; /* Dark warm brown */
+    font-size: 19px;
     font-weight: 600;
-    padding: 14px 16px;
+    padding: 16px 24px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 2px 6px rgba(128, 98, 80, 0.15);
+    border-radius: 6px;
+    user-select: none;
 }
 
 .Header a {
-    color: rgb(255, 255, 255);
+    color: #5a4a42;
     text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-.Header a:hover, i:hover {
-    padding: 2px;
-    background-color: aliceblue;
-    color: rgb(137, 25, 141);
+.Header a:hover {
+    background-color: #f0e6dd; /* Soft beige */
+    color: #7a5d4c;
+    box-shadow: 0 0 8px #dcd1c4;
+}
+
+.Header i:hover {
+    background-color: #f0e6dd;
+    color: #7a5d4c;
+    padding: 4px 6px;
+    border-radius: 3px;
+    box-shadow: 0 0 6px #dcd1c4;
+    cursor: pointer;
+}
+
+/* Responsive tweaks */
+
+@media (max-width: 600px) {
+    .Header {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 16px;
+    }
+    
+    .Header a {
+        padding: 6px 10px;
+        margin-bottom: 8px;
+    }
 }

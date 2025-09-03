@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 import { useForm } from 'react-hook-form'
+
+import '../Styles/AttendanceReport.css'
 import { FormatDate } from '../utils/FormatDate';
 
 function AttendanceReport() {
@@ -56,20 +58,18 @@ function AttendanceReport() {
 
   return (
     <div>
-      <div className="text-center p-5">
-        <h1 className='p-2 fs-3'>Attendance Report</h1>
-        <h3 className='p-2 fs-5'>The Student Id is between (101 to 104)</h3>
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="attendance-container text-center p-5">
+        <h1 className='heading p-2 fs-3'>Attendance Report</h1>
+        <h3 className='subheading p-2 fs-5'>The Student Id is between (101 to 104)</h3>
+        <form className="attendance-form" onSubmit={handleSubmit(onSubmit)}>
           <input
             type="number"
             placeholder='Enter Student Id'
-            {...register(
-              'studentId'
-            )}
+            className="studentId-input"
+            {...register('studentId')}
           />
-          {errors.studentId && <span>{errors.studentId.message}</span>}
+          {errors.studentId && <span className="error-message">{errors.studentId.message}</span>}
         </form>
-
       </div>
 
       {resultSet.length === 0 && (<p className='text-center'>No student found in {data} Student ID</p>)}

@@ -9,7 +9,7 @@ function Footer() {
         ensuring accuracy and reducing administrative workload. 
       </p>
       <p>
-        Location: 17, near Tidel Park, Siruseri, Chennai - 600001.
+        Location: 17, near Chennai General Post Office (GPO), Siruseri, Chennai - 600001.
       </p>
       <p className='i-footer'>
         <i className="fa-brands fa-x-twitter"></i>

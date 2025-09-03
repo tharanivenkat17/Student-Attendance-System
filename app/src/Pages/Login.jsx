@@ -1,32 +1,34 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import '../Styles/Login.css';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
+import axios from 'axios';
+
+import '../Styles/Login.css';
 import { useUserName } from '../Hooks/UserContext';
 import { useAuth } from '../Components/AuthContext';
 
-function Login() {
+const Login = () => {
     const { login } = useAuth();
+    const { setUserName } = useUserName();
+    const { register, handleSubmit, formState: { errors }, setError, clearErrors, reset } = useForm();
     const navigate = useNavigate();
+
     const userData = import.meta.env.VITE_User
     const UserNamePattern = new RegExp(import.meta.env.React_App_Username_Pattern)
     const PasswordPattern = new RegExp(import.meta.env.React_App_Password_Pattern)
-
-    const { setUserName } = useUserName();
-    const { register, handleSubmit, formState: { errors }, setError, clearErrors, reset } = useForm();
 
     // Submit the Login
     const onSubmit = async (data) => {
         try {
             const response = await axios.get(`${userData}?username=${data.username}`)
             if (response.data.length === 0) {
-                setError('username', { type: 'manual', message: 'No user with this Username' });
-            } 
+                setError('username', { type: 'manual', message: 'No User Found' });
+            }
             else {
                 const user = response.data[0];
                 if (user.password === data.password) {
                     setUserName(user.username)
+                    console.log("Name : ", user.username);
+                    console.log("Password : ", user.password);
                     alert('Login Successful');
                     login()
                     reset()
@@ -34,7 +36,7 @@ function Login() {
                     navigate('/home');
                 }
                 else {
-                    setError('password', { type: 'manual', message: 'Username / Password does not match' });
+                    setError('password', { type: 'manual', message: 'Invalid Credentials' });
                 }
             }
         }
@@ -45,41 +47,45 @@ function Login() {
     }
 
     return (
-        <div className="card">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <h2>Login</h2>
-                <div className="flex">
-                    <input
-                        type="text"
-                        placeholder="Enter Username"
-                        {...register('username', {
-                            required: 'Username is required',
-                            pattern: {
-                                value: UserNamePattern,
-                                message: 'Enter Valid Username'
-                            }
-                        })}
-                    />
-                    {errors.username && <span>{errors.username.message}</span>}
+        <div className="home-container">
+            <div className="card">
+                <div className="login-header text-center p-1">
+                    Login
                 </div>
-                <div className="flex">
-                    <input
-                        type="password"
-                        placeholder="Enter Password"
-                        {...register('password', {
-                            required: 'Password is required',
-                            pattern: {
-                                value: PasswordPattern,
-                                message: 'Enter Valid Password'
-                            }
-                        })}
-                    />
-                    {errors.password && <span>{errors.password.message}</span>}
-                </div>
-                <div className="button">
-                    <button type="Submit">Login</button>
-                </div>
-            </form>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="flex">
+                        <input
+                            type="text"
+                            placeholder="Enter Username"
+                            {...register('username', {
+                                required: 'Username is required',
+                                pattern: {
+                                    value: UserNamePattern,
+                                    message: 'Enter Valid Username'
+                                }
+                            })}
+                        />
+                        {errors.username && <span>{errors.username.message}</span>}
+                    </div>
+                    <div className="flex">
+                        <input
+                            type="password"
+                            placeholder="Enter Password"
+                            {...register('password', {
+                                required: 'Password is required',
+                                pattern: {
+                                    value: PasswordPattern,
+                                    message: 'Enter Valid Password'
+                                }
+                            })}
+                        />
+                        {errors.password && <span>{errors.password.message}</span>}
+                    </div>
+                    <div className="button">
+                        <button type="Submit">Login</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

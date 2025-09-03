@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormatDate } from '../utils/FormatDate';
 import { FormatMonth } from '../utils/FormatMonth';
@@ -70,6 +70,7 @@ function MonthlyReport() {
       });
       setEditedData(initialEdited);
       setEditDate('editing');
+      // window.reload();
 
       // const initialEdited = {};
       // Object.entries(specificMonthData).forEach(([date, students]) => {

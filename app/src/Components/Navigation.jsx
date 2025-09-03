@@ -8,9 +8,12 @@ import AttendanceReport from '../Pages/AttendanceReport';
 import '../Styles/Navigation.css';
 import PrivateRoute from './PrivateRoute';
 import { useAuth } from './AuthContext';
+import AttendanceAdmin from '../Pages/AttendanceAdmin';
+import { useUserName } from '../Hooks/UserContext';
 
 function Navigation() {
   const { isLoggedIn, logout } = useAuth();
+  const { userName } = useUserName();
 
   return (
     <>
@@ -22,9 +25,16 @@ function Navigation() {
             </Link>
           )} &nbsp;&nbsp;
           {isLoggedIn && (
-            <Link to="/attendance">
-              <i className="fa-solid fa-list-check"></i> Mark Attendance
-            </Link>
+            userName == 'Principal@123' ?
+              (
+                <Link to="/attendanceadmin">
+                  <i className="fa-solid fa-list-check"></i> Mark Attendance
+                </Link>
+              ) : (
+                <Link to="/attendance">
+                  <i className="fa-solid fa-list-check"></i> Mark Attendance
+                </Link>
+              )
           )} &nbsp;&nbsp;
           {isLoggedIn && (
             <Link to="/monthlyreport">
@@ -40,8 +50,8 @@ function Navigation() {
 
         <div style={{ marginRight: '12px' }}>
           <Link to="/" onClick={isLoggedIn ? logout : null}>
-            {isLoggedIn ? 
-                (<i className="fa-solid fa-right-from-bracket"></i>) : (<i className="fa-solid fa-right-to-bracket"></i>)
+            {isLoggedIn ?
+              (<i className="fa-solid fa-right-from-bracket"></i>) : (<i className="fa-solid fa-right-to-bracket"></i>)
             } &nbsp; {isLoggedIn ? 'Logout' : 'Login'}
           </Link>
         </div>
@@ -52,6 +62,7 @@ function Navigation() {
         <Route element={<PrivateRoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/attendance" element={<Attendance />} />
+          <Route path="/attendanceadmin" element={<AttendanceAdmin />} />
           <Route path="/monthlyreport" element={<MonthlyReport />} />
           <Route path="/attendancereport" element={<AttendanceReport />} />
         </Route>

@@ -1,0 +1,165 @@
+.attendance-header {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+  color: white;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  margin-left: 170px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 900px; 
+  text-align: center;
+}
+
+.attendance-header h1 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.attendance-date-label {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-right: 8px;
+}
+
+.attendance-date-text {
+  font-style: italic;
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+.message-box {
+  display: inline-block;
+  padding: 8px 15px;
+  margin-left: 500px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.message-box.bg-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.message-box.bg-success {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Wrap table inside flex container to center */
+.table-wrapper {
+  width: 100%;
+  max-width: 900px; /* Limit max width of the table wrapper */
+  display: flex;
+  justify-content: center;
+}
+
+table.table {
+  width: 100%; /* Fill the wrapper */
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+}
+
+table.table thead tr {
+  background-color: #4b6cb7;
+  color: white;
+  font-weight: 600;
+}
+
+table.table thead td {
+  padding: 12px 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table.table tbody td {
+  padding: 10px 8px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
+}
+
+table.table tbody tr:hover {
+  background-color: #f1f3f5;
+}
+
+table.table tbody td.text-start {
+  text-align: left;
+  padding-left: 15px;
+  font-weight: 500;
+}
+
+button.btn {
+  min-width: 150px;
+  margin: 15px 10px 0;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 10px 25px;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: none;
+  color: white;
+  user-select: none;
+}
+
+button.btn-primary {
+  background-color: #4b6cb7;
+}
+
+button.btn-primary:hover:not(:disabled) {
+  background-color: #3957a8;
+  box-shadow: 0 6px 12px rgb(57 87 168 / 0.6);
+}
+
+button.btn-success {
+  background-color: #28a745;
+}
+
+button.btn-success:hover:not(:disabled) {
+  background-color: #218838;
+  box-shadow: 0 6px 12px rgb(33 136 56 / 0.6);
+}
+
+button.btn:disabled {
+  background-color: #a9a9a9;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  table.table thead td,
+  table.table tbody td {
+    padding: 8px 6px;
+    font-size: 0.9rem;
+  }
+
+  button.btn {
+    min-width: 120px;
+    font-size: 1rem;
+    padding: 8px 20px;
+    margin: 10px 5px 0;
+  }
+
+  .attendance-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .attendance-date-label,
+  .attendance-date-text {
+    font-size: 1rem;
+  }
+
+  .table-wrapper {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+}
